@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+// import 'package:sushiapp/secondroute.dart';
 import 'splash_screen.dart';
 // import 'test.dart';
+import 'detail.dart';
 
 void main() {
   runApp(MaterialApp(
@@ -18,7 +20,7 @@ void main() {
         secondary: const Color(0xFFFFC107),
       ),
     ),
-    home: const SplashScreen(),
+    home: const detail(),
   ));
 }
 
@@ -75,7 +77,7 @@ class _MyHomePageState extends State<MyHomePage> {
     // than having to individually change instances of widgets.
     return Scaffold(
       appBar: AppBar(
-        // Here we take the value from the MyHomePage object that was created by
+        // Here we take the value from the MyHomePazge object that was created by
         // the App.build method, and use it to set our appbar title.
         title: Text(widget.title),
       ),

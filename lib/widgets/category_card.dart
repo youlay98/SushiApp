@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:sushiapp/Models/category_model.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:sushiapp/itemsfromcategory.dart';
+import 'package:provider/provider.dart';
 
 class CategoryCard extends StatefulWidget {
   const CategoryCard({Key? key}) : super(key: key);
@@ -17,7 +19,7 @@ class _CategoryCardState extends State<CategoryCard> {
     const Category(name: 'sushi', id: 2),
     const Category(name: 'Rameon', id: 3),
     const Category(name: 'Kimchi', id: 4),
-    const Category(name: 'karoania', id: 4),
+    const Category(name: 'karoania', id: 5),
     const Category(name: 'All3', id: 4),
     const Category(name: 'All3', id: 4),
     const Category(name: 'All3', id: 4),
@@ -79,6 +81,8 @@ class _CategoryCardState extends State<CategoryCard> {
         setState(() {
           selectedIndex = index;
         });
+        Provider.of<Itemfromcategory>(context, listen: false)
+            .changecategory(selectedIndex);
       },
     );
   }

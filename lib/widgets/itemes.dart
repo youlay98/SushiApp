@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:provider/provider.dart';
 import 'package:sushiapp/Models/menuitem_model.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:sushiapp/itemsfromcategory.dart';
 
 // ignore: camel_case_types
 class itemescateg extends StatefulWidget {
@@ -13,52 +15,54 @@ class itemescateg extends StatefulWidget {
 
 // ignore: camel_case_types
 class _itemescategState extends State<itemescateg> {
-  List<menuitem> supe = [
-    const menuitem(
-        name: 'supe',
-        id: 2,
-        description: 'jkdfiejlkjsdfj',
-        price: 1.55,
-        image: 'Assets/supe.JPG'),
-    const menuitem(
-        name: 'supe',
-        id: 2,
-        description: 'jkdfiejlkjsdfj',
-        price: 1.55,
-        image: 'Assets/supe.JPG'),
-    const menuitem(
-        name: 'supe',
-        id: 2,
-        description: 'jkdfiejlkjsdfj',
-        price: 1.55,
-        image: 'Assets/supe.JPG'),
-    const menuitem(
-        name: 'supe',
-        id: 2,
-        description: 'jkdfiejlkjsdfj',
-        price: 1.55,
-        image: 'Assets/supe.JPG'),
-    const menuitem(
-        name: 'supe',
-        id: 2,
-        description: 'jkdfiejlkjsdfj',
-        price: 1.55,
-        image: 'Assets/supe.JPG'),
-    const menuitem(
-        name: 'supe',
-        id: 2,
-        description: 'jkdfiejlkjsdfj',
-        price: 1.55,
-        image: 'Assets/supe.JPG'),
-  ];
+  // List<menuitem> supe = [
+  //   const menuitem(
+  //       name: 'supe',
+  //       id: 2,
+  //       description: 'jkdfiejlkjsdfj',
+  //       price: 1.55,
+  //       image: 'Assets/supe.JPG'),
+  //   const menuitem(
+  //       name: 'supe',
+  //       id: 2,
+  //       description: 'jkdfiejlkjsdfj',
+  //       price: 1.55,
+  //       image: 'Assets/supe.JPG'),
+  //   const menuitem(
+  //       name: 'supe',
+  //       id: 2,
+  //       description: 'jkdfiejlkjsdfj',
+  //       price: 1.55,
+  //       image: 'Assets/supe.JPG'),
+  //   const menuitem(
+  //       name: 'supe',
+  //       id: 2,
+  //       description: 'jkdfiejlkjsdfj',
+  //       price: 1.55,
+  //       image: 'Assets/supe.JPG'),
+  //   const menuitem(
+  //       name: 'supe',
+  //       id: 2,
+  //       description: 'jkdfiejlkjsdfj',
+  //       price: 1.55,
+  //       image: 'Assets/supe.JPG'),
+  //   const menuitem(
+  //       name: 'supe',
+  //       id: 2,
+  //       description: 'jkdfiejlkjsdfj',
+  //       price: 1.55,
+  //       image: 'Assets/supe.JPG'),
+  // ];
   @override
   Widget build(BuildContext context) {
-    return Container(
+    List<menuitem> supe = Provider.of<Itemfromcategory>(context).l;
+    return SizedBox(
         // color: Colors.amber,
         height: MediaQuery.of(context).size.height / 2.5,
         child: CarouselSlider.builder(
           itemCount: supe.length,
-          itemBuilder: (context, index, realIdx) => buildCategories(index),
+          itemBuilder: (context, index, realIdx) =>
+              buildCategories(index, supe),
           options: CarouselOptions(
               enlargeCenterPage: true,
               viewportFraction: 0.6,
@@ -67,7 +71,7 @@ class _itemescategState extends State<itemescateg> {
         ));
   }
 
-  buildCategories(int index) {
+  buildCategories(int index, List<menuitem> supe) {
     return Container(
       decoration: BoxDecoration(
         boxShadow: [
