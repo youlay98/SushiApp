@@ -192,16 +192,37 @@ class _detailState extends State<detail> {
               ),
             ),
             Stack(
-  
-                children:const [
-                   Padding(
-                    padding: EdgeInsets.only(left: 30.0),
-                    child: Text(
-                        'This sample shows how to display a Divider between an orange and blue box inside a column. The Divider is 20 logical pixels in height and contains a vertically centered black line that is 5 logical pixels thick. The black line is indented by 20 logical pixels.'),
+              children: [
+                const Padding(
+                  padding: EdgeInsets.only(left: 30.0),
+                  child: Text(
+                      'This sample shows how to display a Divider between an orange and blue box inside a column. The Divider is 20 logical pixels in height and contains a vertically centered black line that is 5 logical pixels thick. The black line is indented by 20 logical pixels.'),
+                ),
+                Padding(
+                  padding: EdgeInsets.only(
+                      left: widthSize / 5.0,
+                      right: widthSize / 5,
+                      top: hightSize / 9),
+                  child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      primary: Colors.black,
+                      padding: EdgeInsets.only(
+                          right: widthSize * 0.2,
+                          left: widthSize * 0.2,
+                          top: hightSize * 0.02,
+                          bottom: hightSize * 0.02),
+                    ),
+                    onPressed: () {},
+                    child: const Text(
+                      'Buy Now',
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          color: Color.fromARGB(255, 255, 255, 255)),
+                    ),
                   ),
-                ],
-              ),
-            )
+                ),
+              ],
+            ),
           ],
         ),
       ),
