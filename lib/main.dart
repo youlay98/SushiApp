@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 // import 'package:sushiapp/secondroute.dart';
-import 'splash_screen.dart';
+// import 'splash_screen.dart';
 // import 'test.dart';
 import 'detail.dart';
+import 'Models/menuitem_model.dart';
+import 'Models/ingredients.dart';
 
 void main() {
   runApp(MaterialApp(
@@ -20,7 +22,23 @@ void main() {
         secondary: const Color(0xFFFFC107),
       ),
     ),
-    home: const detail(),
+    home: detail(
+      m: menuitem(
+        name: 'Kamikazi Salmon',
+        id: 1,
+        description: 'jkdfiejlkjsdfj',
+        price: 1.55,
+        image: 'Assets/piecesushi.png',
+        l: [
+          Ingredient(nam: 'youssef', img: 'Assets/piecesushi.png'),
+          Ingredient(nam: 'youssef', img: 'Assets/piecesushi.png'),
+          Ingredient(nam: 'youssef', img: 'Assets/piecesushi.png'),
+          Ingredient(nam: 'youssef', img: 'Assets/piecesushi.png'),
+          Ingredient(nam: 'youssef', img: 'Assets/piecesushi.png'),
+          Ingredient(nam: 'youssef', img: 'Assets/piecesushi.png')
+        ],
+      ),
+    ),
   ));
 }
 
