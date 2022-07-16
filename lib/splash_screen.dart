@@ -135,7 +135,7 @@ class _SplashScreenState extends State<SplashScreen> {
                             bottom: hightSize * 0.02),
                       ),
                       onPressed: () {
-                        Timer(const Duration(milliseconds: 990), () {
+                        Timer(const Duration(milliseconds: 500), () {
                           Navigator.push(
                             context,
                             MaterialPageRoute(

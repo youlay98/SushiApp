@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'Models/menuitem_model.dart';
 import 'widgets/ingrediantlistview.dart';
+import 'package:readmore/readmore.dart';
 
 // ignore: camel_case_types
 class detail extends StatefulWidget {
   final menuitem m;
-  const detail({Key? key, required this.m}) : super(key: key);
+  final int index;
+  const detail({Key? key, required this.m, required this.index})
+      : super(key: key);
 
   @override
   State<detail> createState() => _detailState();
@@ -76,11 +79,11 @@ class _detailState extends State<detail> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Padding(
-              padding: EdgeInsets.all(20.0),
+            Padding(
+              padding: const EdgeInsets.all(20.0),
               child: Text(
-                'data',
-                style: TextStyle(fontSize: 30),
+                widget.m.name,
+                style: const TextStyle(fontSize: 30),
               ),
             ),
             Row(
@@ -88,9 +91,12 @@ class _detailState extends State<detail> {
                 ingredientdetail(ingredient: widget.m.l),
                 SizedBox(width: MediaQuery.of(context).size.width / 3.5),
                 Expanded(
-                  child: Image.asset(
-                    widget.m.image,
-                    height: 200,
+                  child: Hero(
+                    tag: 'img-${widget.m.image}${widget.index}',
+                    child: Image.asset(
+                      widget.m.image,
+                      height: 200,
+                    ),
                   ),
                 )
               ],
@@ -188,60 +194,43 @@ class _detailState extends State<detail> {
               padding: EdgeInsets.only(left: 30.0),
               child: Text(
                 'Description',
-                style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
               ),
             ),
-            Stack(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.only(left: 30.0),
-                  child: SingleChildScrollView(
-                    scrollDirection: Axis.vertical, //.horizontal
-                    child: Padding(
-                      padding: EdgeInsets.all(30),
-                      child: Column(
-                        children: [
-                          Text(
-                            "1 Description that is too long in text format(Here Data is coming from API) jdlksaf j klkjjflkdsjfkddfdfsdfds " +
-                                "2 Description that is too long in text format(Here Data is coming from API) d fsdfdsfsdfd dfdsfdsf sdfdsfsd d " +
-                                "3 Description that is too long in text format(Here Data is coming from API)  adfsfdsfdfsdfdsf   dsf dfd fds fs" +
-                                "4 Description that is too long in text format(Here Data is coming from API) dsaf dsafdfdfsd dfdsfsda fdas dsad" +
-                                "5 Description that is too long in text format(Here Data is coming from API) dsfdsfd fdsfds fds fdsf dsfds fds " +
-                                "6 Description that is too long in text format(Here Data is coming from API) asdfsdfdsf fsdf sdfsdfdsf sd dfdsf" +
-                                "7 Description that is too long in text format(Here Data is coming from API) df dsfdsfdsfdsfds df dsfds fds fsd" +
-                                "8 Description that is too long in text format(Here Data is coming from API)" +
-                                "9 Description that is too long in text format(Here Data is coming from API)" +
-                                "10 Description that is too long in text format(Here Data is coming from API)",
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                ),
-                Padding(
+            Padding(
+              padding: EdgeInsets.only(left: 30.0, top: hightSize / 35),
+              child: const ReadMoreText(
+                'Flutter is Google’s mobile UI open source framework to build high-quality native (super fast) interfaces for iOS and Android apps with the unified codebase.',
+                trimLines: 2,
+                colorClickableText: Colors.pink,
+                trimMode: TrimMode.Line,
+                trimCollapsedText: 'Show more',
+                trimExpandedText: 'Show less',
+                moreStyle: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.only(
+                left: widthSize / 7,
+                top: hightSize / 20,
+              ),
+              child: ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  primary: Colors.black,
                   padding: EdgeInsets.only(
-                      left: widthSize / 5.0,
-                      right: widthSize / 5,
-                      top: hightSize / 9),
-                  child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      primary: Colors.black,
-                      padding: EdgeInsets.only(
-                          right: widthSize * 0.2,
-                          left: widthSize * 0.2,
-                          top: hightSize * 0.02,
-                          bottom: hightSize * 0.02),
-                    ),
-                    onPressed: () {},
-                    child: const Text(
-                      'Buy Now',
-                      style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          color: Color.fromARGB(255, 255, 255, 255)),
-                    ),
-                  ),
+                      right: widthSize * 0.3,
+                      left: widthSize * 0.3,
+                      top: hightSize * 0.02,
+                      bottom: hightSize * 0.02),
                 ),
-              ],
+                onPressed: () {},
+                child: const Text(
+                  'Buy Now',
+                  style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      color: Color.fromARGB(255, 255, 255, 255)),
+                ),
+              ),
             ),
           ],
         ),
