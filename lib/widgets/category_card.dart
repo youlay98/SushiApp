@@ -3,6 +3,7 @@ import 'package:sushiapp/Models/category_model.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:sushiapp/itemsfromcategory.dart';
 import 'package:provider/provider.dart';
+import 'animationbuilder.dart';
 
 class CategoryCard extends StatefulWidget {
   const CategoryCard({Key? key}) : super(key: key);
@@ -65,8 +66,7 @@ class _CategoryCardState extends State<CategoryCard>
   }
 
   buildCategories(index) {
-    return AnimatedBuilder(
-      animation: _animation,
+    return Animationbuilder(
       child: GestureDetector(
         child: SizedBox(
           // color: Colors.black,
@@ -110,15 +110,6 @@ class _CategoryCardState extends State<CategoryCard>
               .changecategory(selectedIndex);
         },
       ),
-      builder: (
-        BuildContext context,
-        Widget? child,
-      ) {
-        return Transform.translate(
-          offset: Offset(0, _animation.value),
-          child: FadeTransition(opacity: animationopacity, child: child),
-        );
-      },
     );
   }
 }

@@ -92,7 +92,7 @@ class _seconderouteState extends State<seconderoute> {
                 ),
                 SizedBox(height: hightSize / 13),
                 const CategoryCard(),
-                const itemescateg(),
+                Animationbuilder(child: const itemescateg()),
                 Padding(
                   padding: EdgeInsets.only(left: widthSize / 30),
                   child: Animationbuilder(
