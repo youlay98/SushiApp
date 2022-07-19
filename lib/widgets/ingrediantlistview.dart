@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:sushiapp/Models/ingredients.dart';
 
+// ignore: must_be_immutable, camel_case_types
 class ingredientdetail extends StatefulWidget {
   List<Ingredient> ingredient;
   ingredientdetail({Key? key, required this.ingredient}) : super(key: key);
@@ -9,6 +10,7 @@ class ingredientdetail extends StatefulWidget {
   State<ingredientdetail> createState() => _ingredientdetailState();
 }
 
+// ignore: camel_case_types
 class _ingredientdetailState extends State<ingredientdetail> {
   @override
   Widget build(BuildContext context) {
