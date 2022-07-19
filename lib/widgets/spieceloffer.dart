@@ -11,24 +11,27 @@ class SpicelOffer extends StatefulWidget {
 }
 
 class _SpicelOfferState extends State<SpicelOffer>
-    with SingleTickerProviderStateMixin {
-  late AnimationController _controller;
-  late Animation<double> _animation;
+    with TickerProviderStateMixin {
+  late final AnimationController _controller, _cntropacity;
+  late final Animation<double> _animation, animationopacity;
+  bool play = false;
   @override
-  initState() {
+  void initState() {
     super.initState();
-
+    _cntropacity = AnimationController(
+        duration: const Duration(milliseconds: 1500), vsync: this);
+    animationopacity = Tween(begin: 0.0, end: 1.0).animate(_cntropacity);
     _controller = AnimationController(
-      duration: const Duration(seconds: 5),
-      vsync: this,
-    );
-    _animation = Tween(begin: 0.0, end: 1.0).animate(_controller);
+        duration: const Duration(milliseconds: 1000), vsync: this);
+    _animation = Tween(begin: 200.0, end: 0.0).animate(_controller);
     _controller.forward();
+    _cntropacity.forward();
   }
 
   @override
   void dispose() {
     _controller.dispose();
+    _cntropacity.dispose();
     super.dispose();
   }
 
@@ -47,8 +50,8 @@ class _SpicelOfferState extends State<SpicelOffer>
   spicelOffer(int index) {
     return Padding(
       padding: const EdgeInsets.all(8.0),
-      child: FadeTransition(
-        opacity: _animation,
+      child: AnimatedBuilder(
+        animation: _animation,
         child: Container(
           decoration: BoxDecoration(
               color: Colors.white,
@@ -93,6 +96,15 @@ class _SpicelOfferState extends State<SpicelOffer>
             ),
           ),
         ),
+        builder: (
+          BuildContext context,
+          Widget? child,
+        ) {
+          return Transform.translate(
+            offset: Offset(0, play ? 800 : _animation.value),
+            child: FadeTransition(opacity: animationopacity, child: child),
+          );
+        },
       ),
     );
   }

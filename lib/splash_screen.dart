@@ -17,7 +17,7 @@ class _SplashScreenState extends State<SplashScreen> {
   // late final AnimationController _controller;
   // late final Animation<double> _animation = CurvedAnimation(
   //   parent: _controller,
-  //   curve: Curves.easeInQuart,
+  //   curve: Curves.decelerate,
   // );
   // @override
   // void initState() {
@@ -49,11 +49,11 @@ class _SplashScreenState extends State<SplashScreen> {
               AnimatedPositioned(
                 bottom: play ? hightSize : hightSize * 0.42,
                 right: widthSize * 0.2,
-                curve: Curves.easeInQuart,
+                curve: Curves.decelerate,
                 duration: const Duration(milliseconds: 1000),
                 child: AnimatedOpacity(
-                    curve: Curves.easeInQuart,
-                    duration: const Duration(milliseconds: 900),
+                    curve: Curves.decelerate,
+                    duration: const Duration(milliseconds: 2500),
                     opacity: _Opacity,
                     child: Align(
                       alignment: Alignment.topCenter,
@@ -67,14 +67,14 @@ class _SplashScreenState extends State<SplashScreen> {
               ),
 
               AnimatedPositioned(
-                  curve: Curves.easeInQuart,
+                  curve: Curves.decelerate,
                   duration: const Duration(milliseconds: 1000),
-                  bottom: play ? 0 : hightSize * 0.1,
+                  top: play ? hightSize : hightSize * 0.5,
                   left: widthSize * 0.09,
                   right: widthSize * 0.09,
                   child: AnimatedOpacity(
-                    curve: Curves.easeInQuart,
-                    duration: const Duration(milliseconds: 900),
+                    curve: Curves.decelerate,
+                    duration: const Duration(milliseconds: 2500),
                     opacity: _Opacity,
                     child: Align(
                       child: Image.asset(
@@ -85,13 +85,13 @@ class _SplashScreenState extends State<SplashScreen> {
                     ),
                   )),
               AnimatedPositioned(
-                curve: Curves.easeInQuart,
+                curve: Curves.decelerate,
                 duration: const Duration(milliseconds: 1000),
                 left: widthSize * 0.3,
                 top: play ? hightSize : hightSize * 0.84,
                 child: AnimatedOpacity(
-                  curve: Curves.easeInQuart,
-                  duration: const Duration(milliseconds: 900),
+                  curve: Curves.decelerate,
+                  duration: const Duration(milliseconds: 2500),
                   opacity: _Opacity,
                   child: const Text(
                     'the best fresh sushi delivered ',
@@ -100,13 +100,13 @@ class _SplashScreenState extends State<SplashScreen> {
                 ),
               ),
               AnimatedPositioned(
-                  curve: Curves.easeInQuart,
+                  curve: Curves.decelerate,
                   duration: const Duration(milliseconds: 1000),
                   left: widthSize * 0.35,
                   top: play ? hightSize : hightSize * 0.86,
                   child: AnimatedOpacity(
-                    curve: Curves.easeInQuart,
-                    duration: const Duration(milliseconds: 900),
+                    curve: Curves.decelerate,
+                    duration: const Duration(milliseconds: 2500),
                     opacity: _Opacity,
                     child: const Text(
                       ' straight to your door',
@@ -114,15 +114,15 @@ class _SplashScreenState extends State<SplashScreen> {
                     ),
                   )),
               AnimatedPositioned(
-                curve: Curves.easeInQuart,
-                duration: const Duration(milliseconds: 1000),
-                bottom: play ? 0 : hightSize * 0.02,
+                curve: Curves.decelerate,
+                duration: const Duration(milliseconds: 2000),
+                top: play ? hightSize * 0.8 : hightSize * 0.9,
                 right: widthSize * 0.09,
                 left: widthSize * 0.09,
                 child: AnimatedOpacity(
-                  curve: Curves.easeInQuart,
-                  duration: const Duration(milliseconds: 900),
-                  opacity: _Opacity,
+                  curve: Curves.decelerate,
+                  duration: const Duration(milliseconds: 2500),
+                  opacity: 1,
                   child: Align(
                     alignment: Alignment.bottomCenter,
                     child: ElevatedButton(
@@ -135,6 +135,10 @@ class _SplashScreenState extends State<SplashScreen> {
                             bottom: hightSize * 0.02),
                       ),
                       onPressed: () {
+                        setState(() {
+                          play = !play;
+                          _Opacity = 0;
+                        });
                         Timer(const Duration(milliseconds: 500), () {
                           Navigator.push(
                             context,
@@ -145,10 +149,6 @@ class _SplashScreenState extends State<SplashScreen> {
                             play = !play;
                             _Opacity = 1;
                           });
-                        });
-                        setState(() {
-                          play = !play;
-                          _Opacity = 0;
                         });
                       },
                       child: const Text(
@@ -166,7 +166,7 @@ class _SplashScreenState extends State<SplashScreen> {
               //   alignment: Alignment.topCenter,
               //   child: AnimatedAlign(
               //     // alignment: Alignment(x,y),
-              //     duration: const Duration(seconds: 1),
+              //     duration: const Duration(milliseconds: 1),
               //     child: Container(
               //       color: Colors.white,
               //       width: 40,

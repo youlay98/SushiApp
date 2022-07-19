@@ -5,6 +5,7 @@ import 'widgets/category_card.dart';
 import 'widgets/itemes.dart';
 import 'itemsfromcategory.dart';
 import 'widgets/spieceloffer.dart';
+import 'widgets/animationbuilder.dart';
 // import 'test.dart';
 
 // ignore: camel_case_types
@@ -31,39 +32,43 @@ class _seconderouteState extends State<seconderoute> {
               elevation: 0,
               // backgroundColor: Colors.white,
               actions: [
-                IconButton(
-                    onPressed: () {
-                      Navigator.pop(context);
-                    }
-                    // showSearch(context: context, delegate: Mysearch)
-                    ,
-                    icon: const Icon(
-                      Icons.search,
-                      color: Colors.black,
-                    )),
-                IconButton(
-                    onPressed: () {
-                      Navigator.pop(context);
-                    }
-                    // showSearch(context: context, delegate: Mysearch)
-                    ,
-                    icon: const Icon(
-                      Icons.menu,
-                      color: Colors.black,
-                    ))
+                Animationbuilder(
+                  child: IconButton(
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                      icon: const Icon(
+                        Icons.search,
+                        color: Colors.black,
+                      )),
+                ),
+                Animationbuilder(
+                  child: IconButton(
+                      onPressed: () {
+                        Navigator.pop(context);
+                      }
+                      // showSearch(context: context, delegate: Mysearch)
+                      ,
+                      icon: const Icon(
+                        Icons.menu,
+                        color: Colors.black,
+                      )),
+                )
               ],
-              leading: Padding(
-                  padding: EdgeInsets.only(
-                      left: widthSize / 30,
-                      top: hightSize / 100,
-                      bottom: hightSize / 100),
-                  child: Container(
-                    decoration: const BoxDecoration(
-                        color: Colors.amber,
-                        borderRadius: BorderRadius.only(
-                            topLeft: Radius.circular(30),
-                            topRight: Radius.circular(30))),
-                  )),
+              leading: Animationbuilder(
+                child: Padding(
+                    padding: EdgeInsets.only(
+                        left: widthSize / 30,
+                        top: hightSize / 100,
+                        bottom: hightSize / 100),
+                    child: Container(
+                      decoration: const BoxDecoration(
+                          color: Colors.amber,
+                          borderRadius: BorderRadius.only(
+                              topLeft: Radius.circular(30),
+                              topRight: Radius.circular(30))),
+                    )),
+              ),
               backgroundColor: Colors.white,
             ),
           ),
@@ -76,24 +81,27 @@ class _seconderouteState extends State<seconderoute> {
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  '  what would you \n  like to order',
-                  style: GoogleFonts.roboto(
-                    textStyle: const TextStyle(
-                        fontWeight: FontWeight.w400, fontSize: 30),
+                Animationbuilder(
+                  child: Text(
+                    '  what would you \n  like to order',
+                    style: GoogleFonts.roboto(
+                      textStyle: const TextStyle(
+                          fontWeight: FontWeight.w400, fontSize: 30),
+                    ),
                   ),
                 ),
                 SizedBox(height: hightSize / 13),
                 const CategoryCard(),
-                // const Categoryy()
                 const itemescateg(),
                 Padding(
                   padding: EdgeInsets.only(left: widthSize / 30),
-                  child: Text(
-                    'Special for you',
-                    style: GoogleFonts.roboto(
-                      textStyle: const TextStyle(
-                          fontWeight: FontWeight.w400, fontSize: 20),
+                  child: Animationbuilder(
+                    child: Text(
+                      'Special for you',
+                      style: GoogleFonts.roboto(
+                        textStyle: const TextStyle(
+                            fontWeight: FontWeight.w400, fontSize: 20),
+                      ),
                     ),
                   ),
                 ),
