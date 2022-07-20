@@ -12,8 +12,7 @@ class CategoryCard extends StatefulWidget {
   State<CategoryCard> createState() => _CategoryCardState();
 }
 
-class _CategoryCardState extends State<CategoryCard>
-    with TickerProviderStateMixin {
+class _CategoryCardState extends State<CategoryCard> {
   bool isSelected = false;
 
   List<Category> category = [
@@ -28,29 +27,6 @@ class _CategoryCardState extends State<CategoryCard>
     const Category(name: 'All3', id: 4),
     const Category(name: 'All3', id: 4),
   ];
-
-  late final AnimationController _controller, _cntropacity;
-
-  late final Animation<double> _animation, animationopacity;
-  @override
-  void initState() {
-    super.initState();
-    _cntropacity = AnimationController(
-        duration: const Duration(milliseconds: 1500), vsync: this);
-    animationopacity = Tween(begin: 0.0, end: 1.0).animate(_cntropacity);
-    _controller = AnimationController(
-        duration: const Duration(milliseconds: 1000), vsync: this);
-    _animation = Tween(begin: 200.0, end: 0.0).animate(_controller);
-    _controller.forward();
-    _cntropacity.forward();
-  }
-
-  @override
-  void dispose() {
-    _controller.dispose();
-    _cntropacity.dispose();
-    super.dispose();
-  }
 
   int selectedIndex = 0;
   @override
