@@ -1,88 +1,57 @@
+// // import 'package:flutter/material.dart';
+// // import 'package:flutter/src/foundation/key.dart';
 // import 'package:flutter/material.dart';
-// import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/material.dart';
-import 'package:sushiapp/Models/category_model.dart';
-import 'package:google_fonts/google_fonts.dart';
 
-class Categoryy extends StatefulWidget {
-  const Categoryy({Key? key}) : super(key: key);
+// class Categoryy extends StatefulWidget {
+//   const Categoryy({Key? key}) : super(key: key);
 
-  @override
-  State<Categoryy> createState() => _CategoryyState();
-}
+//   @override
+//   State<Categoryy> createState() => _CategoryyState();
+// }
 
-class _CategoryyState extends State<Categoryy> {
-  bool isSelected = false;
+// class _CategoryyState extends State<Categoryy> {
+//   bool isSelected = false;
 
-  List<Category> category = [
-    const Category(name: 'All', id: 1),
-    const Category(name: 'sushi', id: 2),
-    const Category(name: 'Rameon', id: 3),
-    const Category(name: 'Kimchi', id: 4),
-    const Category(name: 'karoania', id: 4),
-    const Category(name: 'All3', id: 4),
-    const Category(name: 'All3', id: 4),
-    const Category(name: 'All3', id: 4),
-    const Category(name: 'All3', id: 4),
-    const Category(name: 'All3', id: 4),
-  ];
-  int selectedIndex = 0;
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-      height: 20,
-      width: double.infinity,
-      child: ListView.builder(
-        // shrinkWrap: true,
-        // shrinkWrap: true,
-        scrollDirection: Axis.horizontal,
-        itemCount: category.length,
-        itemBuilder: (context, index) => buildCategories(index),
-      ),
-    );
-  }
-
-  buildCategories(index) {
-    return GestureDetector(
-      child: SizedBox(
-        // color: Colors.black,
-        height: MediaQuery.of(context).size.height * 0.01,
-        width: MediaQuery.of(context).size.width * 0.3,
-        child: Column(
-          // crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Center(
-                child: Text(
-              category[index].name,
-              style: GoogleFonts.roboto(
-                textStyle: TextStyle(
-                    fontWeight: FontWeight.w500,
-                    fontSize: 20,
-                    color: selectedIndex == index
-                        ? null
-                        : Colors.grey.withOpacity(0.5)),
-              ),
-            )),
-            Text(
-              '.',
-              style: GoogleFonts.roboto(
-                textStyle: TextStyle(
-                    fontWeight: FontWeight.w500,
-                    fontSize: 40,
-                    height: 0.2,
-                    color: selectedIndex == index
-                        ? Colors.black.withOpacity(1)
-                        : Colors.black.withOpacity(0)),
-              ),
-            )
-          ],
-        ),
-      ),
-      onTap: () {
-        setState(() {
-          selectedIndex = index;
-        });
-      },
-    );
-  }
-}
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       body: SizedBox(
+//         height: double.infinity,
+//         width: double.infinity,
+//         child: Column(
+//           mainAxisAlignment: MainAxisAlignment.center,
+//           children: [
+//             const SizedBox(
+//               height: 300,
+//             ),
+//             new SingleChildScrollView(
+//               scrollDirection: Axis.vertical, //.horizontal
+//               child: new Text(
+//                 "1 Description that is too long in text format(Here Data is coming from API) jdlksaf j klkjjflkdsjfkddfdfsdfds " +
+//                     "2 Description that is too long in text format(Here Data is coming from API) d fsdfdsfsdfd dfdsfdsf sdfdsfsd d " +
+//                     "3 Description that is too long in text format(Here Data is coming from API)  adfsfdsfdfsdfdsf   dsf dfd fds fs" +
+//                     "4 Description that is too long in text format(Here Data is coming from API) dsaf dsafdfdfsd dfdsfsda fdas dsad" +
+//                     "5 Description that is too long in text format(Here Data is coming from API) dsfdsfd fdsfds fds fdsf dsfds fds " +
+//                     "6 Description that is too long in text format(Here Data is coming from API) asdfsdfdsf fsdf sdfsdfdsf sd dfdsf" +
+//                     "7 Description that is too long in text format(Here Data is coming from API) df dsfdsfdsfdsfds df dsfds fds fsd" +
+//                     "8 Description that is too long in text format(Here Data is coming from API)" +
+//                     "9 Description that is too long in text format(Here Data is coming from API)" +
+//                     "10 Description that is too long in text format(Here Data is coming from API)",
+//                 style: new TextStyle(
+//                   fontSize: 16.0,
+//                   color: Colors.black,
+//                 ),
+//               ),
+//             ),
+//             Padding(
+//               padding: const EdgeInsets.all(8.0),
+//               child: SizedBox(
+//                 height: 100,
+//               ),
+//             ),
+//           ],
+//         ),
+//       ),
+//     );
+//   }
+// }

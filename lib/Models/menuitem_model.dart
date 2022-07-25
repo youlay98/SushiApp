@@ -40,7 +40,7 @@ class menuitem extends Equatable {
       name: 'Kamikazi Salmon',
       id: 1,
       description: 'jkdfiejlkjsdfj',
-      price: 1.55,
+      price: 2.55,
       image: 'Assets/piecesushi.png',
       l: [
         Ingredient(nam: 'youssef', img: 'Assets/piecesushi.png'),
@@ -55,7 +55,7 @@ class menuitem extends Equatable {
       name: 'Kamikazi Salmon',
       id: 1,
       description: 'jkdfiejlkjsdfj',
-      price: 1.55,
+      price: 3.55,
       image: 'Assets/piecesushi.png',
       l: [
         Ingredient(nam: 'youssef', img: 'Assets/piecesushi.png'),
@@ -70,7 +70,7 @@ class menuitem extends Equatable {
       name: 'Kamikazi Salmon',
       id: 1,
       description: 'jkdfiejlkjsdfj',
-      price: 1.55,
+      price: 4.55,
       image: 'Assets/piecesushi.png',
       l: [
         Ingredient(nam: 'youssef', img: 'Assets/piecesushi.png'),
@@ -85,7 +85,7 @@ class menuitem extends Equatable {
       name: 'Kamikazi Salmon',
       id: 1,
       description: 'jkdfiejlkjsdfj',
-      price: 1.55,
+      price: 5.55,
       image: 'Assets/piecesushi.png',
       l: [
         Ingredient(nam: 'youssef', img: 'Assets/piecesushi.png'),
@@ -100,7 +100,7 @@ class menuitem extends Equatable {
       name: 'Kamikazi Salmon',
       id: 1,
       description: 'jkdfiejlkjsdfj',
-      price: 1.55,
+      price: 6.55,
       image: 'Assets/piecesushi.png',
       l: [
         Ingredient(nam: 'youssef', img: 'Assets/piecesushi.png'),
@@ -115,7 +115,7 @@ class menuitem extends Equatable {
       name: 'Kamikazi Salmon',
       id: 1,
       description: 'jkdfiejlkjsdfj',
-      price: 1.55,
+      price: 7.55,
       image: 'Assets/piecesushi.png',
       l: [
         Ingredient(nam: 'youssef', img: 'Assets/piecesushi.png'),

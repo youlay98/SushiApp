@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'widgets/category_card.dart';
 import 'widgets/itemes.dart';
-import 'itemsfromcategory.dart';
 import 'widgets/spieceloffer.dart';
 import 'widgets/animationbuilder.dart';
 // import 'test.dart';
@@ -22,95 +20,92 @@ class _seconderouteState extends State<seconderoute> {
   Widget build(BuildContext context) {
     final double widthSize = MediaQuery.of(context).size.width;
     final double hightSize = MediaQuery.of(context).size.height;
-    return ChangeNotifierProvider(
-      create: (_) => Itemfromcategory(),
-      child: MaterialApp(
-        home: Scaffold(
-          appBar: PreferredSize(
-            preferredSize: Size.fromHeight(hightSize / 10),
-            child: AppBar(
-              elevation: 0,
-              // backgroundColor: Colors.white,
-              actions: [
-                Animationbuilder(
-                  child: IconButton(
-                      onPressed: () {
-                        Navigator.pop(context);
-                      },
-                      icon: const Icon(
-                        Icons.search,
-                        color: Colors.black,
-                      )),
-                ),
-                Animationbuilder(
-                  child: IconButton(
-                      onPressed: () {
-                        Navigator.pop(context);
-                      }
-                      // showSearch(context: context, delegate: Mysearch)
-                      ,
-                      icon: const Icon(
-                        Icons.menu,
-                        color: Colors.black,
-                      )),
-                )
-              ],
-              leading: Animationbuilder(
-                child: Padding(
-                    padding: EdgeInsets.only(
-                        left: widthSize / 30,
-                        top: hightSize / 100,
-                        bottom: hightSize / 100),
-                    child: Container(
-                      decoration: const BoxDecoration(
-                          color: Colors.amber,
-                          borderRadius: BorderRadius.only(
-                              topLeft: Radius.circular(30),
-                              topRight: Radius.circular(30))),
+    return MaterialApp(
+      home: Scaffold(
+        appBar: PreferredSize(
+          preferredSize: Size.fromHeight(hightSize / 10),
+          child: AppBar(
+            elevation: 0,
+            // backgroundColor: Colors.white,
+            actions: [
+              Animationbuilder(
+                child: IconButton(
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                    icon: const Icon(
+                      Icons.search,
+                      color: Colors.black,
                     )),
               ),
-              backgroundColor: Colors.white,
+              Animationbuilder(
+                child: IconButton(
+                    onPressed: () {
+                      Navigator.pop(context);
+                    }
+                    // showSearch(context: context, delegate: Mysearch)
+                    ,
+                    icon: const Icon(
+                      Icons.menu,
+                      color: Colors.black,
+                    )),
+              )
+            ],
+            leading: Animationbuilder(
+              child: Padding(
+                  padding: EdgeInsets.only(
+                      left: widthSize / 30,
+                      top: hightSize / 100,
+                      bottom: hightSize / 100),
+                  child: Container(
+                    decoration: const BoxDecoration(
+                        color: Colors.amber,
+                        borderRadius: BorderRadius.only(
+                            topLeft: Radius.circular(30),
+                            topRight: Radius.circular(30))),
+                  )),
             ),
+            backgroundColor: Colors.white,
           ),
-          backgroundColor: Colors.white,
-          body: Container(
-            color: Colors.white,
-            width: double.infinity,
-            height: double.infinity,
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Animationbuilder(
+        ),
+        backgroundColor: Colors.white,
+        body: Container(
+          color: Colors.white,
+          width: double.infinity,
+          height: double.infinity,
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Animationbuilder(
+                child: Text(
+                  '  what would you \n  like to order',
+                  style: GoogleFonts.roboto(
+                    textStyle: const TextStyle(
+                        fontWeight: FontWeight.w400, fontSize: 30),
+                  ),
+                ),
+              ),
+              SizedBox(height: hightSize / 13),
+              const CategoryCard(),
+              Animationbuilder(child: const itemescateg()),
+              Padding(
+                padding: EdgeInsets.only(left: widthSize / 30),
+                child: Animationbuilder(
                   child: Text(
-                    '  what would you \n  like to order',
+                    'Special for you',
                     style: GoogleFonts.roboto(
                       textStyle: const TextStyle(
-                          fontWeight: FontWeight.w400, fontSize: 30),
+                          fontWeight: FontWeight.w400, fontSize: 20),
                     ),
                   ),
                 ),
-                SizedBox(height: hightSize / 13),
-                const CategoryCard(),
-                Animationbuilder(child: const itemescateg()),
-                Padding(
-                  padding: EdgeInsets.only(left: widthSize / 30),
-                  child: Animationbuilder(
-                    child: Text(
-                      'Special for you',
-                      style: GoogleFonts.roboto(
-                        textStyle: const TextStyle(
-                            fontWeight: FontWeight.w400, fontSize: 20),
-                      ),
-                    ),
-                  ),
-                ),
-                SizedBox(
-                  height: hightSize / 30,
-                ),
-                const SpicelOffer()
-              ],
-            ),
+              ),
+              SizedBox(
+                height: hightSize / 30,
+              ),
+              const SpicelOffer()
+            ],
           ),
         ),
       ),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sushiapp/Models/ingredients.dart';
+import 'animationbuilder.dart';
 
 // ignore: must_be_immutable, camel_case_types
 class ingredientdetail extends StatefulWidget {
@@ -14,23 +15,25 @@ class ingredientdetail extends StatefulWidget {
 class _ingredientdetailState extends State<ingredientdetail> {
   @override
   Widget build(BuildContext context) {
+    double hightSize = MediaQuery.of(context).size.height;
+    double widthSize = MediaQuery.of(context).size.width;
     return Padding(
-      padding: EdgeInsets.only(left: MediaQuery.of(context).size.width / 10),
+      padding: EdgeInsets.only(left: widthSize / 10, top: hightSize / 35),
       child: SizedBox(
-        height: MediaQuery.of(context).size.height / 2.4,
-        width: MediaQuery.of(context).size.width / 7,
+        height: hightSize / 2.4,
+        width: widthSize / 5,
         child: ListView.builder(
             scrollDirection: Axis.vertical,
             itemCount: widget.ingredient.length,
-            itemBuilder: (context, index) => ingredientmethoddetail(index)),
+            itemBuilder: (context, index) =>
+                ingredientmethoddetail(index, hightSize, widthSize)),
       ),
     );
   }
 
-  ingredientmethoddetail(int index) {
+  ingredientmethoddetail(int index, double hightSize, double widthSize) {
     return Padding(
-      padding: EdgeInsets.only(
-          top: MediaQuery.of(context).size.height / 40, left: 5, right: 5),
+      padding: EdgeInsets.only(top: hightSize / 35, left: 5, right: 5),
       child: Container(
         decoration: BoxDecoration(
           color: Colors.white,
@@ -44,25 +47,32 @@ class _ingredientdetailState extends State<ingredientdetail> {
             ),
           ],
         ),
-        height: 70,
+        height: hightSize / 10,
         child: Column(
           children: [
             ClipRRect(
-              borderRadius: BorderRadius.circular(20), // Image border
+              borderRadius: BorderRadius.circular(40), // Image border
               child: SizedBox.fromSize(
-                size: const Size.fromRadius(20), // Image radius
-                child:
-                    Image.asset(widget.ingredient[index].img, fit: BoxFit.cover
-                        // width: 200,
-                        ),
+                size: Size.fromRadius(
+                    (widthSize * hightSize) * 0.00007), // Image radius
+                child: Animationbuilder(
+                  child: Image.asset(widget.ingredient[index].img,
+                      fit: BoxFit.cover
+                      // width: 200,
+                      ),
+                ),
               ),
             ),
             const SizedBox(
               height: 10,
             ),
-            Text(
-              widget.ingredient[index].nam,
-              style: const TextStyle(fontSize: 10),
+            Animationbuilder(
+              child: Text(
+                widget.ingredient[index].nam,
+                style: TextStyle(
+                    fontSize: (widthSize * hightSize) * 0.00004,
+                    fontWeight: FontWeight.w500),
+              ),
             )
           ],
         ),

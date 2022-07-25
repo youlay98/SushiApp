@@ -39,6 +39,7 @@ dependencies:
   equatable: ^2.0.3
   carousel_slider: ^4.1.1
   readmore: ^2.1.0
+  flutter_slidable: ^2.0.0
 
 
 dev_dependencies:
@@ -67,6 +68,14 @@ flutter:
   assets:
     - Assets/
     - Assets/Icons/
+
+  fonts:
+    - family: lat
+      fonts:
+        - asset: Assets/fontText/OpenSans-VariableFont_wdth,wght.ttf
+        - asset: Assets/fontText/OpenSans-Italic-VariableFont_wdth,wght.ttf
+          style: italic
+
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

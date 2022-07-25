@@ -21,11 +21,11 @@ class _CategoryCardState extends State<CategoryCard> {
     const Category(name: 'Rameon', id: 3),
     const Category(name: 'Kimchi', id: 4),
     const Category(name: 'karoania', id: 5),
-    const Category(name: 'All3', id: 4),
-    const Category(name: 'All3', id: 4),
-    const Category(name: 'All3', id: 4),
-    const Category(name: 'All3', id: 4),
-    const Category(name: 'All3', id: 4),
+    // const Category(name: 'All3', id: 4),
+    // const Category(name: 'All3', id: 4),
+    // const Category(name: 'All3', id: 4),
+    // const Category(name: 'All3', id: 4),
+    // const Category(name: 'All3', id: 4),
   ];
 
   int selectedIndex = 0;
