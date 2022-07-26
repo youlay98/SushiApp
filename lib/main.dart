@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sushiapp/splash_screen.dart';
 import 'package:sushiapp/textstyle.dart';
 import 'package:sushiapp/secondroute.dart';
 // import 'splash_screen.dart';
@@ -40,7 +41,7 @@ class MyApp extends StatelessWidget {
             bodyText1: bodyTextStyle,
             bodyText2: bodyTextStyle,
           )),
-      home: const seconderoute(),
+      home: const SplashScreen(),
     );
   }
 }
