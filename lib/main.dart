@@ -6,6 +6,7 @@ import 'widgets/cartItem.dart';
 import 'package:provider/provider.dart';
 import 'cart.dart';
 import 'itemsfromcategory.dart';
+import 'cartscreen.dart';
 
 // import 'test.dart';
 // import 'detail.dart';
@@ -40,7 +41,7 @@ class MyApp extends StatelessWidget {
             bodyText1: bodyTextStyle,
             bodyText2: bodyTextStyle,
           )),
-      home: const cartItem(),
+      home: const cartscreen(),
     );
   }
 }
