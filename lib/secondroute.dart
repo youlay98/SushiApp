@@ -3,6 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'widgets/category_card.dart';
 import 'widgets/itemes.dart';
 import 'widgets/spieceloffer.dart';
+import 'cartscreen.dart';
 import 'widgets/animationbuilder.dart';
 // import 'test.dart';
 
@@ -41,7 +42,13 @@ class _seconderouteState extends State<seconderoute> {
               Animationbuilder(
                 child: IconButton(
                     onPressed: () {
-                      Navigator.pop(context);
+                      Navigator.push(
+                        context,
+                        PageRouteBuilder(
+                            transitionDuration:
+                                const Duration(milliseconds: 2000),
+                            pageBuilder: (_, __, ___) => const cartscreen()),
+                      );
                     }
                     // showSearch(context: context, delegate: Mysearch)
                     ,

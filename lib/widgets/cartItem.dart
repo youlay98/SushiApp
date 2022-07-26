@@ -4,7 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:sushiapp/Models/menuitem_model.dart';
 import 'package:sushiapp/cart.dart';
 // import 'package:sushiapp/cart.dart';
-import 'listtilforcart.dart';
+import 'item_in_cart.dart';
 import 'animationbuilder.dart';
 
 // ignore: camel_case_types

@@ -1,7 +1,9 @@
 // ignore: file_names
 
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:sushiapp/Models/menuitem_model.dart';
+import 'package:sushiapp/cart.dart';
 import 'scalabelwedgit.dart';
 
 // ignore: camel_case_types, must_be_immutable
@@ -16,10 +18,11 @@ class listtilecart extends StatefulWidget {
 }
 
 class _ListtilecartState extends State<listtilecart> {
-  double c = 0;
-
   @override
   Widget build(BuildContext context) {
+    int itemnuber = Provider.of<Cart>(context).numberofitem[widget.index];
+    bool clr = false;
+    final v = ValueNotifier<double>(0.0);
     double heightsize = MediaQuery.of(context).size.height;
     double widthsize = MediaQuery.of(context).size.width;
 
@@ -31,7 +34,7 @@ class _ListtilecartState extends State<listtilecart> {
           width: 20,
           child: Card(
             shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(10.0), //<-- SEE HERE
+              borderRadius: BorderRadius.circular(10.0),
             ),
             shadowColor: Colors.white,
             child: slidablewedgit(
@@ -44,9 +47,12 @@ class _ListtilecartState extends State<listtilecart> {
                     Padding(
                       padding: const EdgeInsets.only(left: 4),
                       child: Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10.0),
+                          color: const Color.fromARGB(255, 232, 222, 222),
+                        ),
                         width: widthsize / 4,
                         height: widthsize / 4,
-                        color: const Color.fromARGB(255, 232, 222, 222),
                         child: Center(
                           child: Padding(
                             padding: const EdgeInsets.only(top: 2, bottom: 2),
@@ -63,15 +69,24 @@ class _ListtilecartState extends State<listtilecart> {
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Text(widget.l[widget.index].name,
+                          SizedBox(
+                            width: 200,
+                            child: Text(widget.l[widget.index].name,
+                                style: TextStyle(
+                                    fontSize:
+                                        (widthsize * heightsize) * 0.00006,
+                                    fontWeight: FontWeight.bold)),
+                          ),
+                          SizedBox(
+                            width: 200,
+                            child: Text(
+                              '\$${double.parse(((Provider.of<Cart>(
+                                context,
+                              ).priceofitem[widget.index])).toStringAsFixed(2))}',
                               style: TextStyle(
                                   fontSize: (widthsize * heightsize) * 0.00007,
-                                  fontWeight: FontWeight.bold)),
-                          Text(
-                            '\$${widget.l[widget.index].price}',
-                            style: TextStyle(
-                                fontSize: (widthsize * heightsize) * 0.00007,
-                                fontWeight: FontWeight.bold),
+                                  fontWeight: FontWeight.bold),
+                            ),
                           ),
                         ],
                       ),
@@ -84,7 +99,10 @@ class _ListtilecartState extends State<listtilecart> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         GestureDetector(
-                          onTap: () {},
+                          onTap: () {
+                            Provider.of<Cart>(context, listen: false)
+                                .reduction(widget.index);
+                          },
                           child: Container(
                             width: heightsize / 25,
                             height: heightsize / 25,
@@ -105,14 +123,17 @@ class _ListtilecartState extends State<listtilecart> {
                             )),
                           ),
                         ),
-                        const SizedBox(
+                        SizedBox(
                           child: Text(
-                            '1',
-                            style: TextStyle(fontSize: 20),
+                            '${Provider.of<Cart>(context, listen: false).numberofitem[widget.index]}',
+                            style: const TextStyle(fontSize: 20),
                           ),
                         ),
                         GestureDetector(
-                          onTap: () {},
+                          onTap: () {
+                            Provider.of<Cart>(context, listen: false)
+                                .increment(widget.index);
+                          },
                           child: Container(
                             width: heightsize / 25,
                             height: heightsize / 25,

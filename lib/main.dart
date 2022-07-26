@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:sushiapp/textstyle.dart';
-// import 'package:sushiapp/secondroute.dart';
+import 'package:sushiapp/secondroute.dart';
 // import 'splash_screen.dart';
-import 'widgets/cartItem.dart';
+// import 'widgets/cartItem.dart';
 import 'package:provider/provider.dart';
 import 'cart.dart';
 import 'itemsfromcategory.dart';
-import 'cartscreen.dart';
-
+// import 'cartscreen.dart';
 // import 'test.dart';
 // import 'detail.dart';
 // import 'Models/menuitem_model.dart';
@@ -41,7 +40,7 @@ class MyApp extends StatelessWidget {
             bodyText1: bodyTextStyle,
             bodyText2: bodyTextStyle,
           )),
-      home: const cartscreen(),
+      home: const seconderoute(),
     );
   }
 }

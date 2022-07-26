@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:sushiapp/cart.dart';
 import 'Models/menuitem_model.dart';
 import 'widgets/ingrediantlistview.dart';
 import 'widgets/animationbuilder.dart';
@@ -16,7 +18,7 @@ class detail extends StatefulWidget {
 
 // ignore: camel_case_types
 class _detailState extends State<detail> {
-  int valure = 1;
+  int numberitem = 1;
   bool clr = false;
   double v = 0.0;
   @override
@@ -35,15 +37,12 @@ class _detailState extends State<detail> {
         preferredSize: Size.fromHeight(hightSize / 10),
         child: AppBar(
           elevation: 0,
-          // backgroundColor: Colors.white,
           actions: [
             Animationbuilder(
               child: IconButton(
                   onPressed: () {
                     Navigator.pop(context);
-                  }
-                  // showSearch(context: context, delegate: Mysearch)
-                  ,
+                  },
                   icon: const Icon(
                     Icons.search,
                     color: Colors.black,
@@ -166,11 +165,12 @@ class _detailState extends State<detail> {
                             ),
                             onTap: () {
                               setState(() {
-                                if (valure > 1) {
-                                  valure = valure - 1;
-                                  v = double.parse(((widget.m.price * valure))
-                                      .toStringAsFixed(2));
-                                  if (valure == 1) {
+                                if (numberitem > 1) {
+                                  numberitem = numberitem - 1;
+                                  v = double.parse(
+                                      ((widget.m.price * numberitem))
+                                          .toStringAsFixed(2));
+                                  if (numberitem == 1) {
                                     clr = false;
                                   }
                                 }
@@ -184,7 +184,7 @@ class _detailState extends State<detail> {
                               width: 40,
                               child: Center(
                                 child: Animationbuilder(
-                                  child: Text('$valure',
+                                  child: Text('$numberitem',
                                       style: const TextStyle(fontSize: 20)),
                                 ),
                               )),
@@ -192,18 +192,17 @@ class _detailState extends State<detail> {
                             child: Padding(
                               padding: EdgeInsets.all(
                                   (widthSize * hightSize) * 0.00003),
-                              child: Expanded(
-                                  child: Animationbuilder(
+                              child: Animationbuilder(
                                 child: Text('+',
                                     style: TextStyle(
                                         fontSize:
                                             (widthSize * hightSize) * 0.0001)),
-                              )),
+                              ),
                             ),
                             onTap: () {
                               setState(() {
-                                valure = valure + 1;
-                                v = double.parse(((widget.m.price * valure))
+                                numberitem = numberitem + 1;
+                                v = double.parse(((widget.m.price * numberitem))
                                     .toStringAsFixed(2));
                                 clr = true;
                               });
@@ -260,7 +259,10 @@ class _detailState extends State<detail> {
                         top: hightSize * 0.02,
                         bottom: hightSize * 0.02),
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    Provider.of<Cart>(context, listen: false)
+                        .addItemfromDetailPage(widget.m, numberitem);
+                  },
                   child: const Text(
                     'Buy Now',
                     style: TextStyle(

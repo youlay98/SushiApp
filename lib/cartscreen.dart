@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'widgets/animationbuilder.dart';
 import 'widgets/cartItem.dart';
+import 'widgets/button.dart';
+import 'package:provider/provider.dart';
+import 'cart.dart';
 
 class cartscreen extends StatelessWidget {
   const cartscreen({super.key});
@@ -62,7 +65,29 @@ class cartscreen extends StatelessWidget {
               child: SizedBox(child: cartItem()),
             ),
             Container(
-              height: 200,
+              color: Colors.white,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Padding(
+                    padding: EdgeInsets.only(left: widthSize / 15),
+                    child: const Text('     Total',
+                        style: TextStyle(
+                            fontSize: 22, fontWeight: FontWeight.bold)),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(right: widthSize / 15),
+                    child: Text(
+                        '\$${double.parse(((Provider.of<Cart>(context).totalpriceofcart)).toStringAsFixed(2))}     ',
+                        style: const TextStyle(
+                            fontSize: 22, fontWeight: FontWeight.bold)),
+                  )
+                ],
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.only(bottom: hightSize / 40, top: 25),
+              child: const buttonwidget(text: 'Payment'),
             )
           ],
         ));
