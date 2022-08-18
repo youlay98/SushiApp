@@ -26,12 +26,15 @@ class _CategoryCardState extends State<CategoryCard> {
   int selectedIndex = 0;
   @override
   Widget build(BuildContext context) {
-    return ConstrainedBox(
-      constraints: const BoxConstraints(maxHeight: 31.5),
-      child: ListView.builder(
-        scrollDirection: Axis.horizontal,
-        itemCount: category.length,
-        itemBuilder: (context, index) => buildCategories(index),
+    return SizedBox(
+      height: 75,
+      child: FractionallySizedBox(
+        heightFactor: 0.5,
+        child: ListView.builder(
+          scrollDirection: Axis.horizontal,
+          itemCount: category.length,
+          itemBuilder: (context, index) => buildCategories(index),
+        ),
       ),
     );
   }
@@ -39,17 +42,26 @@ class _CategoryCardState extends State<CategoryCard> {
   buildCategories(index) {
     return Animationbuilder(
       child: GestureDetector(
+        onTap: () {
+          setState(() {
+            selectedIndex = index;
+          });
+          Provider.of<Itemfromcategory>(context, listen: false)
+              .listen(category[index].name);
+          // Provider.of<Itemfromcategory>(context, listen: false).value =
+          //     Provider.of<Itemfromcategory>(context, listen: false)
+          //         .list(category[index].name);
+        },
         child: SizedBox(
           // color: Colors.black,
-          height: 50,
-          width: MediaQuery.of(context).size.width * 0.3,
+          width: MediaQuery.of(context).size.width * 0.25,
           child: Column(
             // crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Center(
                   child: Text(
                 category[index].name,
-                style: GoogleFonts.roboto(
+                style: GoogleFonts.inter(
                   textStyle: TextStyle(
                       fontWeight: FontWeight.w500,
                       fontSize: 20,
@@ -60,11 +72,11 @@ class _CategoryCardState extends State<CategoryCard> {
               )),
               Text(
                 '.',
-                style: GoogleFonts.roboto(
+                style: GoogleFonts.inter(
                   textStyle: TextStyle(
-                      fontWeight: FontWeight.w500,
+                      fontWeight: FontWeight.bold,
                       fontSize: 40,
-                      height: 0.2,
+                      height: 0.32,
                       color: selectedIndex == index
                           ? Colors.black.withOpacity(1)
                           : Colors.black.withOpacity(0)),
@@ -73,13 +85,6 @@ class _CategoryCardState extends State<CategoryCard> {
             ],
           ),
         ),
-        onTap: () {
-          setState(() {
-            selectedIndex = index;
-          });
-          Provider.of<Itemfromcategory>(context, listen: false)
-              .changecategory(selectedIndex);
-        },
       ),
     );
   }

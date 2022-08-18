@@ -1,11 +1,13 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:sushiapp/Models/ingredients.dart';
 import 'animationbuilder.dart';
 
 // ignore: must_be_immutable, camel_case_types
 class ingredientdetail extends StatefulWidget {
-  List<Ingredient> ingredient;
-  ingredientdetail({Key? key, required this.ingredient}) : super(key: key);
+  String id;
+  ingredientdetail({Key? key, required this.id}) : super(key: key);
 
   @override
   State<ingredientdetail> createState() => _ingredientdetailState();
@@ -13,25 +15,44 @@ class ingredientdetail extends StatefulWidget {
 
 // ignore: camel_case_types
 class _ingredientdetailState extends State<ingredientdetail> {
+  Future<QuerySnapshot<Map<String, dynamic>>>? v;
+  @override
+  void initState() {
+    super.initState();
+    v = FirebaseFirestore.instance.collection('Ingrediant').get();
+  }
+
   @override
   Widget build(BuildContext context) {
     double hightSize = MediaQuery.of(context).size.height;
     double widthSize = MediaQuery.of(context).size.width;
     return Padding(
       padding: EdgeInsets.only(left: widthSize / 10, top: hightSize / 35),
-      child: SizedBox(
-        height: hightSize / 2.4,
-        width: widthSize / 5,
-        child: ListView.builder(
-            scrollDirection: Axis.vertical,
-            itemCount: widget.ingredient.length,
-            itemBuilder: (context, index) =>
-                ingredientmethoddetail(index, hightSize, widthSize)),
-      ),
+      child: FutureBuilder<QuerySnapshot<Map<String, dynamic>>>(
+          future: v,
+          builder: (context, snapshot) {
+            if (snapshot.hasData) {
+              return SizedBox(
+                height: hightSize / 2.4,
+                width: widthSize / 5,
+                child: ListView.builder(
+                    scrollDirection: Axis.vertical,
+                    itemCount: snapshot.data!.docs.length,
+                    itemBuilder: (context, index) {
+                      print('lkjfaoiejfowjeofj');
+
+                      Ingredient ing =
+                          Ingredient.fromFirestore(snapshot.data!.docs[index]);
+                      return ingredientmethoddetail(ing, hightSize, widthSize);
+                    }),
+              );
+            }
+            return const Center(child: CircularProgressIndicator());
+          }),
     );
   }
 
-  ingredientmethoddetail(int index, double hightSize, double widthSize) {
+  ingredientmethoddetail(Ingredient ing, double hightSize, double widthSize) {
     return Padding(
       padding: EdgeInsets.only(top: hightSize / 35, left: 5, right: 5),
       child: Container(
@@ -56,10 +77,16 @@ class _ingredientdetailState extends State<ingredientdetail> {
                 size: Size.fromRadius(
                     (widthSize * hightSize) * 0.00007), // Image radius
                 child: Animationbuilder(
-                  child: Image.asset(widget.ingredient[index].img,
-                      fit: BoxFit.cover
-                      // width: 200,
-                      ),
+                  child: FutureBuilder<String>(
+                      future: downloadFromFirebase(ing.img),
+                      builder: (context, snapshot) {
+                        if (snapshot.hasData) {
+                          return Image.network(snapshot.data!, fit: BoxFit.cover
+                              // width: 200,
+                              );
+                        }
+                        return const Center(child: CircularProgressIndicator());
+                      }),
                 ),
               ),
             ),
@@ -68,7 +95,7 @@ class _ingredientdetailState extends State<ingredientdetail> {
             ),
             Animationbuilder(
               child: Text(
-                widget.ingredient[index].nam,
+                ing.nam,
                 style: TextStyle(
                     fontSize: (widthSize * hightSize) * 0.00004,
                     fontWeight: FontWeight.w500),
@@ -78,5 +105,11 @@ class _ingredientdetailState extends State<ingredientdetail> {
         ),
       ),
     );
+  }
+
+  Future<String> downloadFromFirebase(String s) async {
+    Reference ref = FirebaseStorage.instance.ref().child(s);
+    String myUrl = await ref.getDownloadURL();
+    return myUrl.toString();
   }
 }

@@ -1,27 +1,43 @@
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:sushiapp/Models/menuitem_model.dart';
 import 'package:sushiapp/detail.dart';
 import 'package:provider/provider.dart';
 import 'package:sushiapp/cart.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:sushiapp/itemsfromcategory.dart';
 
-class itemwidget extends StatelessWidget {
+class ItemWidget extends StatefulWidget {
   final int index;
-  final List<menuitem> supe;
-  const itemwidget({super.key, required this.index, required this.supe});
+  final menuitem supe;
+  const ItemWidget({super.key, required this.index, required this.supe});
+
+  @override
+  State<ItemWidget> createState() => _ItemWidgetState();
+}
+
+class _ItemWidgetState extends State<ItemWidget> {
+  @override
+  void initState() {
+    super.initState();
+    Provider.of<Itemfromcategory>(context, listen: false)
+        .imagedown(widget.supe.image);
+  }
 
   @override
   Widget build(BuildContext context) {
+    double hightSize = MediaQuery.of(context).size.height;
+    double widthSize = MediaQuery.of(context).size.width;
+
     return Container(
       decoration: BoxDecoration(
         boxShadow: [
           BoxShadow(
-              color: Colors.grey.withOpacity(0.2),
+              color: Colors.grey.withOpacity(0.08),
               blurRadius: 10,
               offset: const Offset(0, 10)),
         ],
         borderRadius: BorderRadius.circular(30.0),
-        color: Colors.white,
       ),
       width: MediaQuery.of(context).size.width * 0.5,
       child: Padding(
@@ -32,88 +48,102 @@ class itemwidget extends StatelessWidget {
         child: Column(
           children: [
             ClipRRect(
-              borderRadius: BorderRadius.circular(20), // Image border
+              borderRadius:
+                  BorderRadius.circular(widthSize * 0.01), // Image border
               child: SizedBox.fromSize(
-                size: const Size.fromRadius(60), // Image radius
-                child: Hero(
-                  tag: 'img-${supe[index].image}$index',
-                  child: GestureDetector(
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        PageRouteBuilder(
-                            transitionDuration:
-                                const Duration(milliseconds: 2000),
-                            pageBuilder: (_, __, ___) =>
-                                detail(m: supe[index], index: index)),
-                      );
-                    },
-                    child: Image.asset(supe[index].image, fit: BoxFit.cover
-                        // width: 200,
-                        ),
-                  ),
-                ),
+                size: Size.fromRadius(
+                    (widthSize * hightSize) * 0.00017), // Image radius
+                child: FutureBuilder<String>(
+                    future:
+                        Provider.of<Itemfromcategory>(context, listen: false)
+                            .img,
+                    builder: (context, snapshot) {
+                      if (snapshot.hasData) {
+                        return Hero(
+                          tag: 'img-${widget.supe.image}${widget.index}',
+                          child: GestureDetector(
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                PageRouteBuilder(
+                                    transitionDuration:
+                                        const Duration(milliseconds: 2000),
+                                    pageBuilder: (_, __, ___) => detail(
+                                        m: widget.supe, index: widget.index)),
+                              );
+                            },
+                            child: Padding(
+                              padding: const EdgeInsets.only(top: 9),
+                              child: Image.network(snapshot.data!,
+                                  fit: BoxFit.cover),
+                            ),
+                          ),
+                        );
+                      }
+                      return const Center(child: CircularProgressIndicator());
+                    }),
               ),
             ),
-            // Image.asset(supe[index].image, height: 145, fit: BoxFit.cover
-            //     // width: 200,
-            //     ),
-            const SizedBox(
-              height: 30,
+            SizedBox(
+              height: hightSize / 30,
             ),
             Row(
               children: [
-                Text(
-                  supe[index].name,
-                  style: GoogleFonts.roboto(
-                    textStyle: const TextStyle(
-                      fontWeight: FontWeight.w400,
-                      fontSize: 15,
-                      height: 0.2,
+                Expanded(
+                  child: Text(
+                    widget.supe.name,
+                    style: GoogleFonts.inter(
+                      textStyle: TextStyle(
+                        fontWeight: FontWeight.w500,
+                        fontSize: (widthSize * hightSize) * 0.00006,
+                      ),
                     ),
                   ),
                 )
               ],
             ),
-            const SizedBox(
-              height: 10,
+            SizedBox(
+              height: hightSize / 100,
             ),
             Expanded(
               child: Row(
                 children: [
-                  Text(
-                    "\$${supe[index].price}",
-                    style: GoogleFonts.roboto(
-                      textStyle: const TextStyle(
-                        fontWeight: FontWeight.w500,
-                        fontSize: 20,
-                        height: 0.2,
+                  Expanded(
+                    child: Text(
+                      "\$${widget.supe.price}",
+                      style: GoogleFonts.inter(
+                        textStyle: TextStyle(
+                          fontWeight: FontWeight.w500,
+                          fontSize: (widthSize * hightSize) * 0.00006,
+                          height: 0.2,
+                        ),
                       ),
                     ),
                   ),
-                  const SizedBox(
-                    width: 100,
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(bottom: 5),
-                    child: GestureDetector(
-                      onTap: () {
-                        Provider.of<Cart>(context, listen: false)
-                            .additem(supe[index], 1);
-                      },
+                  GestureDetector(
+                    onTap: () {
+                      Provider.of<Cart>(context, listen: false)
+                          .add(widget.supe, context);
+                    },
+                    child: Padding(
+                      padding: EdgeInsets.only(bottom: hightSize * 0.02),
                       child: Container(
-                        width: 33,
-                        height: 33,
-                        padding: const EdgeInsets.all(0.01),
+                        width: widthSize / 14,
+                        height: widthSize / 14,
+                        // padding: const EdgeInsets.all(0.01),
                         decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(30.0),
+                          borderRadius: BorderRadius.circular(20),
                           color: Colors.black,
                         ),
-                        child: const Center(
-                            child: Text(
-                          "+",
-                          style: TextStyle(color: Colors.white, fontSize: 30),
-                        )),
+                        child: Align(
+                          alignment: Alignment.center,
+                          child: Text(
+                            "+",
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontSize: (hightSize * widthSize) * 0.00007),
+                          ),
+                        ),
                       ),
                     ),
                   ),

@@ -1,6 +1,10 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sushiapp/cart.dart';
+import 'package:sushiapp/itemsfromcategory.dart';
+import 'package:sushiapp/widgets/itemes.dart';
+import 'package:sushiapp/widgets/notificationwedgit.dart';
 import 'Models/menuitem_model.dart';
 import 'widgets/ingrediantlistview.dart';
 import 'widgets/animationbuilder.dart';
@@ -21,8 +25,14 @@ class _detailState extends State<detail> {
   int numberitem = 1;
   bool clr = false;
   double v = 0.0;
+  Future? value;
   @override
   initState() {
+    value = FirebaseFirestore.instance
+        .collection('food')
+        .doc(widget.m.id)
+        .collection('cotegory')
+        .get();
     v = widget.m.price;
     super.initState();
   }
@@ -35,47 +45,30 @@ class _detailState extends State<detail> {
     return Scaffold(
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(hightSize / 10),
-        child: AppBar(
-          elevation: 0,
-          actions: [
-            Animationbuilder(
-              child: IconButton(
-                  onPressed: () {
-                    Navigator.pop(context);
-                  },
-                  icon: const Icon(
-                    Icons.search,
-                    color: Colors.black,
-                  )),
-            ),
-            Animationbuilder(
-              child: IconButton(
-                  onPressed: () {
-                    Navigator.pop(context);
-                  }
-                  // showSearch(context: context, delegate: Mysearch)
-                  ,
-                  icon: const Icon(
-                    Icons.menu,
-                    color: Colors.black,
-                  )),
-            )
-          ],
-          leading: Animationbuilder(
-            child: Padding(
-                padding: EdgeInsets.only(
-                    left: widthSize / 30,
-                    top: hightSize / 100,
-                    bottom: hightSize / 100),
-                child: Container(
-                  decoration: const BoxDecoration(
-                      color: Colors.amber,
-                      borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(30),
-                          topRight: Radius.circular(30))),
+        child: Padding(
+          padding: EdgeInsets.only(top: hightSize / 50),
+          child: AppBar(
+            elevation: 0,
+            title: const Center(
+                child: Text(
+              'Detail',
+              textAlign: TextAlign.center,
+              style: TextStyle(color: Colors.black, fontSize: 26),
+            )),
+            actions: [
+              Animationbuilder(child: const Notiffication()),
+            ],
+            leading: IconButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                icon: Icon(
+                  Icons.arrow_back,
+                  color: Colors.black,
+                  size: (widthSize * hightSize) * 0.0001,
                 )),
+            backgroundColor: Colors.white,
           ),
-          backgroundColor: Colors.white,
         ),
       ),
       body: SizedBox(
@@ -95,16 +88,19 @@ class _detailState extends State<detail> {
             ),
             Row(
               children: [
-                Animationbuilder(
-                    child: ingredientdetail(ingredient: widget.m.l)),
+                Animationbuilder(child: ingredientdetail(id: widget.m.id)),
                 SizedBox(width: widthSize / 3.5),
                 Expanded(
                   child: Hero(
-                    tag: 'img-${widget.m.image}${widget.index}',
-                    child: Image.asset(
-                      widget.m.image,
-                      height: (widthSize * hightSize) * 0.001,
-                    ),
+                    tag: 'img-${widget.m.image}${widget.m.name}',
+                    child: FutureBuilder<String>(
+                        future: Provider.of<Itemfromcategory>(context).img,
+                        builder: (context, snapshot) {
+                          return Image.network(
+                            snapshot.data!,
+                            height: (widthSize * hightSize) * 0.001,
+                          );
+                        }),
                   ),
                 )
               ],
@@ -251,8 +247,8 @@ class _detailState extends State<detail> {
                 child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
                     shadowColor: Colors.grey,
+                    backgroundColor: Colors.black,
                     elevation: 20,
-                    primary: Colors.black,
                     padding: EdgeInsets.only(
                         right: widthSize * 0.3,
                         left: widthSize * 0.3,
@@ -261,7 +257,7 @@ class _detailState extends State<detail> {
                   ),
                   onPressed: () {
                     Provider.of<Cart>(context, listen: false)
-                        .addItemfromDetailPage(widget.m, numberitem);
+                        .addItemfromDetailPage(widget.m, numberitem, context);
                   },
                   child: const Text(
                     'Buy Now',

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>871767437836-8srick8l3npq2du8l828b25q781jb0pb.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.871767437836-8srick8l3npq2du8l828b25q781jb0pb</string>
+	<key>API_KEY</key>
+	<string>AIzaSyAWMJuPgOTu_XS9vAsbLYwodmyjtDLv_cw</string>
+	<key>GCM_SENDER_ID</key>
+	<string>871767437836</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.example.sushiapp</string>
+	<key>PROJECT_ID</key>
+	<string>sushiapp-aa632</string>
+	<key>STORAGE_BUCKET</key>
+	<string>sushiapp-aa632.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:871767437836:ios:d4036305c1982ffed63429</string>
+</dict>
+</plist>

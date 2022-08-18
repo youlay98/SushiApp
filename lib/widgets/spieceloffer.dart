@@ -83,8 +83,13 @@ class _SpicelOfferState extends State<SpicelOffer>
                 radius: 30.0,
                 backgroundImage: AssetImage(l[index].image),
               ),
-              title: const Text('Only today 20% OFF!'),
-              subtitle: Text('${l[index].name}\n jdflasjoie'),
+              title: const Text(
+                'Only today 20% OFF!',
+                style: TextStyle(fontSize: 20),
+              ),
+              subtitle: Text('${l[index].name}\n',
+                  style:
+                      const TextStyle(decoration: TextDecoration.lineThrough)),
               isThreeLine: true,
               trailing: const Padding(
                 padding: EdgeInsets.only(top: 18.0),

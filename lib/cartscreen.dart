@@ -5,8 +5,8 @@ import 'widgets/button.dart';
 import 'package:provider/provider.dart';
 import 'cart.dart';
 
-class cartscreen extends StatelessWidget {
-  const cartscreen({super.key});
+class CartScreen extends StatelessWidget {
+  const CartScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -17,43 +17,45 @@ class cartscreen extends StatelessWidget {
           preferredSize: Size.fromHeight(hightSize / 10),
           child: AppBar(
             elevation: 0,
+            title: const Center(
+                child: Text(
+              'Cart',
+              textAlign: TextAlign.center,
+              style: TextStyle(color: Colors.black),
+            )),
             // backgroundColor: Colors.white,
-            actions: [
-              Animationbuilder(
-                child: IconButton(
-                    onPressed: () {
-                      Navigator.pop(context);
-                    },
-                    icon: const Icon(
-                      Icons.search,
-                      color: Colors.black,
-                    )),
-              ),
-              Animationbuilder(
-                child: IconButton(
-                    onPressed: () {
-                      Navigator.pop(context);
-                    }
-                    // showSearch(context: context, delegate: Mysearch)
-                    ,
-                    icon: const Icon(
-                      Icons.menu,
-                      color: Colors.black,
-                    )),
-              )
-            ],
+            // actions: [
+            // Animationbuilder(
+            //   child: IconButton(
+            //       onPressed: () {
+            //         Navigator.pop(context);
+            //       },
+            //       icon: const Icon(
+            //         Icons.search,
+            //         color: Colors.black,
+            //       )),
+            // ),
+            // Animationbuilder(
+            //   child: IconButton(
+            //       onPressed: () {
+            //         Navigator.pop(context);
+            //       }
+            //       // showSearch(context: context, delegate: Mysearch)
+            //       ,
+            //       icon: const Icon(
+            //         Icons.menu,
+            //         color: Colors.black,
+            //       )),
+            // )
+            // ],
             leading: Animationbuilder(
-              child: Padding(
-                  padding: EdgeInsets.only(
-                      left: widthSize / 30,
-                      top: hightSize / 100,
-                      bottom: hightSize / 100),
-                  child: Container(
-                    decoration: const BoxDecoration(
-                        color: Colors.amber,
-                        borderRadius: BorderRadius.only(
-                            topLeft: Radius.circular(30),
-                            topRight: Radius.circular(30))),
+              child: IconButton(
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  icon: const Icon(
+                    Icons.arrow_back,
+                    color: Colors.black,
                   )),
             ),
             backgroundColor: Colors.white,
@@ -87,7 +89,7 @@ class cartscreen extends StatelessWidget {
             ),
             Padding(
               padding: EdgeInsets.only(bottom: hightSize / 40, top: 25),
-              child: const buttonwidget(text: 'Payment'),
+              child: const ButtonWidget(text: 'Payment'),
             )
           ],
         ));

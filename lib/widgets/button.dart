@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-class buttonwidget extends StatelessWidget {
+class ButtonWidget extends StatelessWidget {
   final String text;
-  const buttonwidget({super.key, required this.text});
+  const ButtonWidget({super.key, required this.text});
   @override
   Widget build(BuildContext context) {
     double widthSize = MediaQuery.of(context).size.width;
@@ -13,9 +13,9 @@ class buttonwidget extends StatelessWidget {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(15),
         ),
+        backgroundColor: Colors.black,
         shadowColor: Colors.grey,
         elevation: 20,
-        primary: Colors.black,
         padding: EdgeInsets.only(
             right: widthSize * 0.3,
             left: widthSize * 0.3,

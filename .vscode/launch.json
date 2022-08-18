@@ -7,19 +7,33 @@
         {
             "name": "sushiapp",
             "request": "launch",
-            "type": "dart"
+            "type": "dart",
+            "deviceId": ""
         },
         {
             "name": "sushiapp (profile mode)",
             "request": "launch",
             "type": "dart",
             "flutterMode": "profile"
+            
         },
         {
             "name": "sushiapp (release mode)",
             "request": "launch",
             "type": "dart",
             "flutterMode": "release"
-        }
+        },
+        {
+            "name": "sushiapp",
+            "request": "launch",
+            "type": "dart",
+            "deviceId": ""
+        },
+        {
+            "name": "sushiapp",
+            "request": "launch",
+            "type": "dart",
+            "deviceId": ""
+        },
     ]
 }

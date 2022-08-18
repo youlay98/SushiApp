@@ -1,20 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:sushiapp/splash_screen.dart';
 import 'package:sushiapp/textstyle.dart';
-import 'package:sushiapp/secondroute.dart';
-// import 'splash_screen.dart';
-// import 'widgets/cartItem.dart';
 import 'package:provider/provider.dart';
+import 'package:sushiapp/widgets/itemes.dart';
 import 'cart.dart';
 import 'itemsfromcategory.dart';
-// import 'cartscreen.dart';
-// import 'test.dart';
-// import 'detail.dart';
-// import 'Models/menuitem_model.dart';
-// import 'Models/ingredients.dart';
-// import 'widgets/animationbuilder.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+  //
   runApp(MultiProvider(providers: [
     ChangeNotifierProvider(
       create: (_) => Cart(),
@@ -30,18 +29,17 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: ThemeData(
-          colorScheme: ColorScheme.fromSwatch().copyWith(
-            primary: Colors.white,
-            secondary: const Color(0xFFFFC107),
-          ),
-          textTheme: const TextTheme(
-            headline1: TitleTextStyle,
-            headline2: TitleTextStyle,
-            bodyText1: bodyTextStyle,
-            bodyText2: bodyTextStyle,
-          )),
-      home: const SplashScreen(),
-    );
+        theme: ThemeData(
+            colorScheme: ColorScheme.fromSwatch().copyWith(
+              primary: Colors.white,
+              secondary: const Color(0xFFFFC107),
+            ),
+            textTheme: const TextTheme(
+              headline1: TitleTextStyle,
+              headline2: TitleTextStyle,
+              bodyText1: bodyTextStyle,
+              bodyText2: bodyTextStyle,
+            )),
+        home: const SplashScreen());
   }
 }
