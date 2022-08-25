@@ -1,4 +1,3 @@
-import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:sushiapp/Models/menuitem_model.dart';
 import 'package:sushiapp/detail.dart';
@@ -124,6 +123,8 @@ class _ItemWidgetState extends State<ItemWidget> {
                     onTap: () {
                       Provider.of<Cart>(context, listen: false)
                           .add(widget.supe, context);
+                      // Provider.of<Cart>(context, listen: false)
+                      //     .totalnumbervariabel();
                     },
                     child: Padding(
                       padding: EdgeInsets.only(bottom: hightSize * 0.02),

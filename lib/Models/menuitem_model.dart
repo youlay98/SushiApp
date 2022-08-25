@@ -1,6 +1,5 @@
 import 'package:equatable/equatable.dart';
 // import 'package:sushiapp/Models/category_model.dart';
-import 'ingredients.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 // ignore: camel_case_types, must_be_immutable

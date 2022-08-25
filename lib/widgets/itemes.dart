@@ -11,10 +11,10 @@ import 'category_widget.dart';
 class itemescateg extends StatefulWidget {
   const itemescateg({Key? key}) : super(key: key);
   @override
-  State<itemescateg> createState() => _itemescategState();
+  State<itemescateg> createState() => _ItemescategState();
 }
 
-class _itemescategState extends State<itemescateg> {
+class _ItemescategState extends State<itemescateg> {
   @override
   initState() {
     super.initState();

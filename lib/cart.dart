@@ -1,7 +1,6 @@
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:sushiapp/Models/cartinitemModel.dart';
 import 'Models/menuitem_model.dart';
 
 class Cart extends ChangeNotifier {
@@ -21,6 +20,7 @@ class Cart extends ChangeNotifier {
 
   checkItemIfExistInCart(String id) async {
     bool isexistincart = false;
+
     await FirebaseFirestore.instance
         .collection('itemsincart')
         .get()
@@ -33,6 +33,24 @@ class Cart extends ChangeNotifier {
       }
     });
     return isexistincart;
+  }
+
+  totalnumbervariabel() async {
+    totalpriceofcart = await calculatetotalprice();
+    notifyListeners();
+  }
+
+  calculatetotalprice() async {
+    double c = 0.0;
+    await FirebaseFirestore.instance
+        .collection('itemsincart')
+        .get()
+        .then((QuerySnapshot querySnapshot) {
+      for (var doc in querySnapshot.docs) {
+        c = c + doc['totalprice'];
+      }
+    });
+    return c;
   }
 
   Stream<QuerySnapshot<Map<String, dynamic>>> fetchcart() {
@@ -56,7 +74,8 @@ class Cart extends ChangeNotifier {
         'price': cartinitem.price,
         'totalprice': cartinitem.price,
         'foodId': cartinitem.id
-      }).catchError((error) => print("Failed to add user: $error"));
+      });
+      await totalnumbervariabel();
     } else {
       const snackBar = SnackBar(
         content: Text('this item already exist in Cart'),
@@ -65,16 +84,31 @@ class Cart extends ChangeNotifier {
       ScaffoldMessenger.of(context).showSnackBar(snackBar);
       notifyListeners();
     }
+    // calculatetotalprice();
   }
 
   Future<void> delet(String id) async {
-    return FirebaseFirestore.instance
-        .collection('itemsincart')
-        .doc(id)
-        .delete();
+    await FirebaseFirestore.instance.collection('itemsincart').doc(id).delete();
+    // calculatetotalprice();
   }
 
-  incrimentv(String id) {
+  updateitemincart(String id, double totalprice, int numbtotal) async {
+    final sfDocRef =
+        FirebaseFirestore.instance.collection('itemsincart').doc(id);
+    await FirebaseFirestore.instance.runTransaction((transaction) async {
+      // final snapshot = await transaction.get(sfDocRef);
+
+      // final numbtotal = snapshot.get("totalnumber") + 1;
+      // final totalprice = snapshot.get("price") * numbtotal;
+      transaction.update(sfDocRef, {"totalnumber": numbtotal});
+      transaction.update(sfDocRef, {"totalprice": totalprice});
+    });
+    await totalnumbervariabel();
+
+    // .update({"totalnumber": FieldValue.increment(-1)});
+  }
+
+  incrimentv(String id, double totalprice, int numbtotal) {
     final sfDocRef =
         FirebaseFirestore.instance.collection('itemsincart').doc(id);
     FirebaseFirestore.instance.runTransaction((transaction) async {
@@ -85,6 +119,7 @@ class Cart extends ChangeNotifier {
       transaction.update(sfDocRef, {"totalnumber": numbtotal});
       transaction.update(sfDocRef, {"totalprice": totalprice});
     });
+    // calculatetotalprice();
     // .update({"totalnumber": FieldValue.increment(-1)});
   }
 
@@ -100,34 +135,35 @@ class Cart extends ChangeNotifier {
         transaction.update(sfDocRef, {"totalprice": totalprice});
       }
     });
+    // calculatetotalprice();
     // .update({"totalnumber": FieldValue.increment(-1)});
   }
 
-  deletitem(int index) {
-    l.removeAt(index);
-    numberofitem.removeAt(index);
-    priceofitem.removeAt(index);
-    pricetotlaofcartf();
-    notifyListeners();
-  }
+  // deletitem(int index) {
+  //   l.removeAt(index);
+  //   numberofitem.removeAt(index);
+  //   priceofitem.removeAt(index);
+  //   pricetotlaofcartf();
+  //   notifyListeners();
+  // }
 
-  increment(int index) {
-    numberofitem[index]++;
-    priceofitem[index] = l[index].price * numberofitem[index];
-    pricetotlaofcartf();
+  // increment(int index) {
+  //   numberofitem[index]++;
+  //   priceofitem[index] = l[index].price * numberofitem[index];
+  //   pricetotlaofcartf();
 
-    notifyListeners();
-  }
+  //   notifyListeners();
+  // }
 
-  reduction(int index) {
-    if (numberofitem[index] != 1) {
-      numberofitem[index]--;
-      priceofitem[index] = l[index].price * numberofitem[index];
-      pricetotlaofcartf();
-      notifyListeners();
-    }
-    return 0;
-  }
+  // reduction(int index) {
+  //   if (numberofitem[index] != 1) {
+  //     numberofitem[index]--;
+  //     priceofitem[index] = l[index].price * numberofitem[index];
+  //     pricetotlaofcartf();
+  //     notifyListeners();
+  //   }
+  //   return 0;
+  // }
 
   numberandvisbility() {
     notificationnumber = 0;
@@ -135,39 +171,71 @@ class Cart extends ChangeNotifier {
     notifyListeners();
   }
 
-  additem(menuitem m, int itemnumber, BuildContext context) {
-    for (int i = 0; i < l.length; i++) {
-      if (l[i].price == m.price && l[i].name == m.name) {
-        return 0;
-      }
-    }
-    l.add(m);
-    numberofitem.add(itemnumber);
-    priceofitem.add(m.price * itemnumber);
-    pricetotlaofcartf();
-    notificationnumber++;
-    visibl = true;
-    final snackBar = SnackBar(
-      content: Text('${m.price} added to cart'),
-    );
+  // additem(menuitem m, int itemnumber, BuildContext context) {
+  //   for (int i = 0; i < l.length; i++) {
+  //     if (l[i].price == m.price && l[i].name == m.name) {
+  //       return 0;
+  //     }
+  //   }
+  //   l.add(m);
+  //   numberofitem.add(itemnumber);
+  //   priceofitem.add(m.price * itemnumber);
+  //   pricetotlaofcartf();
+  //   notificationnumber++;
+  //   visibl = true;
+  //   final snackBar = SnackBar(
+  //     content: Text('${m.price} added to cart'),
+  //   );
 
-    ScaffoldMessenger.of(context).showSnackBar(snackBar);
-    notifyListeners();
+  //   ScaffoldMessenger.of(context).showSnackBar(snackBar);
+  //   notifyListeners();
+  // }
+
+  getcollectionid(String s) async {
+    String? collctionId;
+    await FirebaseFirestore.instance
+        .collection('itemsincart')
+        .where('foodId', isEqualTo: s)
+        .get()
+        .then((value) {
+      for (var element in value.docs) {
+        collctionId = element.id;
+      }
+    });
+    return collctionId;
   }
 
-  addItemfromDetailPage(menuitem m, int itemnumber, BuildContext context) {
-    for (int i = 0; i < l.length; i++) {
-      if (identical(l[i], m)) {
-        numberofitem[i] = itemnumber;
-        priceofitem[i] = l[i].price * numberofitem[i];
-        pricetotlaofcartf();
-        notifyListeners();
-        return 0;
-        // 22.65
-      }
+  addItemfromDetailPage(
+    menuitem cartinitem,
+    BuildContext context,
+    int totalnumber,
+    double pricetotal,
+  ) async {
+    if (await checkItemIfExistInCart(cartinitem.id) == true) {
+      String s = await getcollectionid(cartinitem.id);
+      await FirebaseFirestore.instance.collection('itemsincart').doc(s).update({
+        'name': cartinitem.name,
+        'image': cartinitem.image,
+        'totalnumber': totalnumber,
+        'price': cartinitem.price,
+        'totalprice': pricetotal,
+        'foodId': cartinitem.id
+      });
+    } else {
+      await FirebaseFirestore.instance.collection('itemsincart').add({
+        'name': cartinitem.name,
+        'image': cartinitem.image,
+        'totalnumber': totalnumber,
+        'price': cartinitem.price,
+        'totalprice': pricetotal,
+        'foodId': cartinitem.id
+      });
+      notificationnumber++;
+      notifyListeners();
     }
-    additem(m, itemnumber, context);
-    notifyListeners();
+    totalnumbervariabel();
+
+    // calculatetotalprice();
   }
   // 9.3
 

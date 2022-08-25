@@ -19,7 +19,11 @@ class _ingredientdetailState extends State<ingredientdetail> {
   @override
   void initState() {
     super.initState();
-    v = FirebaseFirestore.instance.collection('Ingrediant').get();
+    v = FirebaseFirestore.instance
+        .collection('foods')
+        .doc(widget.id)
+        .collection('Ingrediant')
+        .get();
   }
 
   @override
@@ -39,8 +43,6 @@ class _ingredientdetailState extends State<ingredientdetail> {
                     scrollDirection: Axis.vertical,
                     itemCount: snapshot.data!.docs.length,
                     itemBuilder: (context, index) {
-                      print('lkjfaoiejfowjeofj');
-
                       Ingredient ing =
                           Ingredient.fromFirestore(snapshot.data!.docs[index]);
                       return ingredientmethoddetail(ing, hightSize, widthSize);
@@ -84,6 +86,11 @@ class _ingredientdetailState extends State<ingredientdetail> {
                           return Image.network(snapshot.data!, fit: BoxFit.cover
                               // width: 200,
                               );
+                        }
+                        if (snapshot.hasError) {
+                          return const Center(
+                            child: Text('there is an erorr'),
+                          );
                         }
                         return const Center(child: CircularProgressIndicator());
                       }),

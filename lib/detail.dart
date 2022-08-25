@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sushiapp/cart.dart';
 import 'package:sushiapp/itemsfromcategory.dart';
-import 'package:sushiapp/widgets/itemes.dart';
 import 'package:sushiapp/widgets/notificationwedgit.dart';
 import 'Models/menuitem_model.dart';
 import 'widgets/ingrediantlistview.dart';
@@ -96,9 +95,14 @@ class _detailState extends State<detail> {
                     child: FutureBuilder<String>(
                         future: Provider.of<Itemfromcategory>(context).img,
                         builder: (context, snapshot) {
-                          return Image.network(
-                            snapshot.data!,
-                            height: (widthSize * hightSize) * 0.001,
+                          if (snapshot.hasData) {
+                            return Image.network(
+                              snapshot.data!,
+                              height: (widthSize * hightSize) * 0.001,
+                            );
+                          }
+                          return const Center(
+                            child: CircularProgressIndicator(),
                           );
                         }),
                   ),
@@ -257,7 +261,10 @@ class _detailState extends State<detail> {
                   ),
                   onPressed: () {
                     Provider.of<Cart>(context, listen: false)
-                        .addItemfromDetailPage(widget.m, numberitem, context);
+                        .addItemfromDetailPage(
+                            widget.m, context, numberitem, v);
+                    Provider.of<Cart>(context, listen: false)
+                        .totalnumbervariabel();
                   },
                   child: const Text(
                     'Buy Now',

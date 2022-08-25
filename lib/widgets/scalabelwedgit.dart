@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:provider/provider.dart';
-import 'package:sushiapp/Models/cartinitemModel.dart';
+import 'package:sushiapp/Models/cartinitemmodel.dart';
 import 'package:sushiapp/cart.dart';
 
 // ignore: camel_case_types
@@ -24,12 +24,15 @@ class slidablewedgit extends StatelessWidget {
         motion: const ScrollMotion(),
         dismissible: DismissiblePane(onDismissed: () {
           Provider.of<Cart>(context, listen: false).delet(l.id);
+          Provider.of<Cart>(context, listen: false).totalnumbervariabel();
         }),
         extentRatio: 0.2,
         children: [
           SlidableAction(
-            onPressed: (context) =>
-                {Provider.of<Cart>(context, listen: false).delet(l.id)},
+            onPressed: (context) {
+              Provider.of<Cart>(context, listen: false).delet(l.id);
+              Provider.of<Cart>(context, listen: false).totalnumbervariabel();
+            },
             borderRadius: BorderRadius.circular(20.0),
             backgroundColor: const Color.fromARGB(255, 230, 180, 176),
             foregroundColor: Colors.white,

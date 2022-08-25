@@ -1,10 +1,9 @@
 // ignore_for_file: file_names
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'package:sushiapp/cart.dart';
+
 // import 'package:sushiapp/cart.dart';
-import '../Models/cartinitemModel.dart';
+import '../Models/cartinitemmodel.dart';
 import 'item_in_cart.dart';
 import 'animationbuilder.dart';
 
@@ -13,22 +12,29 @@ class cartItem extends StatefulWidget {
   const cartItem({super.key});
 
   @override
-  State<cartItem> createState() => _cartItemState();
+  State<cartItem> createState() => _CartItemState();
 }
 
-class _cartItemState extends State<cartItem> {
+class _CartItemState extends State<cartItem> {
+  late Stream<QuerySnapshot<Map<String, dynamic>>> value;
   @override
   void initState() {
+    value = FirebaseFirestore.instance.collection('itemsincart').snapshots();
     super.initState();
-    Provider.of<Cart>(context, listen: false).listen();
+    // Provider.of<Cart>(context, listen: false).fetchcart();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     // List<menuitem> l = Provider.of<Cart>(context).l;
+
     return StreamBuilder<QuerySnapshot<Map<String, dynamic>>>(
-        stream:
-            FirebaseFirestore.instance.collection('itemsincart').snapshots(),
+        stream: value,
         builder: (context, snapshot) {
           if (snapshot.hasData) {
             return Container(
@@ -47,12 +53,11 @@ class _cartItemState extends State<cartItem> {
                       itemBuilder: ((context, index) {
                         Cartinitem cartinitem = Cartinitem.fromfirestore(
                             snapshot.data!.docs[index]);
-                        // print('cart:  ${cartinitem.name}');
-                        // return Container(
-                        //   color: Colors.amber,
-                        // );
                         return Animationbuilder(
-                            child: listtilecart(l: cartinitem));
+                            child: listtilecart(
+                          l: cartinitem,
+                          key: UniqueKey(),
+                        ));
                       }),
                     ),
                   ),

@@ -10,6 +10,7 @@ class CartScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Provider.of<Cart>(context, listen: false).totalnumbervariabel();
     final double widthSize = MediaQuery.of(context).size.width;
     final double hightSize = MediaQuery.of(context).size.height;
     return Scaffold(

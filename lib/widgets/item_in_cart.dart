@@ -2,7 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:sushiapp/Models/cartinitemModel.dart';
+import 'package:sushiapp/Models/cartinitemmodel.dart';
 import 'package:sushiapp/cart.dart';
 import 'scalabelwedgit.dart';
 
@@ -18,9 +18,16 @@ class listtilecart extends StatefulWidget {
 }
 
 class _ListtilecartState extends State<listtilecart> {
+  double pricetotal = 0.0;
+  int numbertotal = 1;
+  double price = 0.0;
+
   Future<String>? v;
   @override
   void initState() {
+    pricetotal = widget.l.pricetotal;
+    numbertotal = widget.l.numbertotal;
+    price = widget.l.price;
     super.initState();
     v = Provider.of<Cart>(context, listen: false)
         .downloadFromFirebase(widget.l.image);
@@ -73,8 +80,24 @@ class _ListtilecartState extends State<listtilecart> {
                               ),
                             );
                           }
-                          return const Center(
-                              child: CircularProgressIndicator());
+                          return Padding(
+                            padding: const EdgeInsets.only(left: 4),
+                            child: Container(
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(10.0),
+                                color: const Color.fromARGB(255, 232, 222, 222),
+                              ),
+                              width: widthsize / 4,
+                              height: widthsize / 4,
+                              child: const Center(
+                                child: Padding(
+                                  padding: EdgeInsets.only(top: 2, bottom: 2),
+                                  // child: Image.network(snapshot.data!,
+                                  //     fit: BoxFit.cover),
+                                ),
+                              ),
+                            ),
+                          );
                         }),
                     Padding(
                       padding: const EdgeInsets.only(left: 10),
@@ -95,7 +118,7 @@ class _ListtilecartState extends State<listtilecart> {
                           SizedBox(
                             width: widthsize / 2,
                             child: Text(
-                              '\$${double.parse(((widget.l.pricetotal)).toStringAsFixed(2))}',
+                              '\$${double.parse(((pricetotal)).toStringAsFixed(2))}',
                               style: TextStyle(
                                   fontSize: (widthsize * heightsize) * 0.00007,
                                   fontWeight: FontWeight.bold),
@@ -113,8 +136,14 @@ class _ListtilecartState extends State<listtilecart> {
                       children: [
                         GestureDetector(
                           onTap: () {
+                            if (numbertotal > 1) {
+                              numbertotal--;
+                              pricetotal = numbertotal * price;
+                            }
+
                             Provider.of<Cart>(context, listen: false)
-                                .reductionv(widget.l.id);
+                                .updateitemincart(
+                                    widget.l.id, pricetotal, numbertotal);
                           },
                           child: Container(
                             width: widthsize / 14,
@@ -138,14 +167,18 @@ class _ListtilecartState extends State<listtilecart> {
                         ),
                         SizedBox(
                           child: Text(
-                            '${widget.l.numbertotal}',
+                            '$numbertotal',
                             style: const TextStyle(fontSize: 20),
                           ),
                         ),
                         GestureDetector(
                           onTap: () {
+                            numbertotal++;
+                            pricetotal = numbertotal * price;
+
                             Provider.of<Cart>(context, listen: false)
-                                .incrimentv(widget.l.id);
+                                .updateitemincart(
+                                    widget.l.id, pricetotal, numbertotal);
                           },
                           child: Container(
                             width: widthsize / 14,

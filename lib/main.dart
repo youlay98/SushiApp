@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:sushiapp/splash_screen.dart';
+import 'package:sushiapp/Auth/utils_class.dart';
 import 'package:sushiapp/textstyle.dart';
 import 'package:provider/provider.dart';
-import 'package:sushiapp/widgets/itemes.dart';
 import 'cart.dart';
 import 'itemsfromcategory.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
+import 'Auth/loginandsignuppage.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -29,9 +29,10 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+        scaffoldMessengerKey: Utils.messengerKey,
         theme: ThemeData(
             colorScheme: ColorScheme.fromSwatch().copyWith(
-              primary: Colors.white,
+              primary: Colors.black,
               secondary: const Color(0xFFFFC107),
             ),
             textTheme: const TextTheme(
@@ -40,6 +41,6 @@ class MyApp extends StatelessWidget {
               bodyText1: bodyTextStyle,
               bodyText2: bodyTextStyle,
             )),
-        home: const SplashScreen());
+        home: const Loginandsigninpage());
   }
 }

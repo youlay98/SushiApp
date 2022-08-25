@@ -45,6 +45,10 @@ dependencies:
   firebase_storage: ^10.3.4
   firebase_core: ^1.20.0
   badges: ^2.0.3
+  logger: ^1.1.0
+  firebase_auth: ^3.6.4
+  email_validator: ^2.1.17
+  google_sign_in: ^5.4.1
 
 
 dev_dependencies:

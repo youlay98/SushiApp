@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'widgets/category_card.dart';
@@ -35,6 +36,7 @@ class _seconderouteState extends State<seconderoute> {
                 Animationbuilder(
                   child: IconButton(
                       onPressed: () {
+                        FirebaseAuth.instance.signOut();
                         // Navigator.pop(context);
                       },
                       icon: const Icon(Icons.search,
