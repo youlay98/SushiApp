@@ -1,11 +1,12 @@
 // ignore_for_file: file_names
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 // import 'package:sushiapp/cart.dart';
-import '../Models/cartinitemmodel.dart';
-import 'item_in_cart.dart';
-import 'animationbuilder.dart';
+import '../../../Models/cartinitemmodel.dart';
+import '../../Home/widget/item_in_cart.dart';
+import '../../../Animation/animationbuilder.dart';
 
 // ignore: camel_case_types
 class cartItem extends StatefulWidget {
@@ -19,7 +20,10 @@ class _CartItemState extends State<cartItem> {
   late Stream<QuerySnapshot<Map<String, dynamic>>> value;
   @override
   void initState() {
-    value = FirebaseFirestore.instance.collection('itemsincart').snapshots();
+    value = FirebaseFirestore.instance
+        .collection('itemsincart')
+        .where('userId', isEqualTo: FirebaseAuth.instance.currentUser!.uid)
+        .snapshots();
     super.initState();
     // Provider.of<Cart>(context, listen: false).fetchcart();
   }

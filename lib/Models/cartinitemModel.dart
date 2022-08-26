@@ -8,6 +8,7 @@ class Cartinitem {
   String image = '';
   String id = '';
   String foodId = '';
+  String userId = '';
   Cartinitem(
       {required this.name,
       required this.price,
@@ -15,7 +16,8 @@ class Cartinitem {
       required this.numbertotal,
       required this.pricetotal,
       required this.id,
-      required this.foodId});
+      required this.foodId,
+      required this.userId});
 
   factory Cartinitem.fromfirestore(
       DocumentSnapshot<Map<String, dynamic>> snapshot) {
@@ -28,6 +30,7 @@ class Cartinitem {
       numbertotal: data?['totalnumber'],
       pricetotal: data?['totalprice'],
       id: id2,
+      userId: data?['userId'],
       foodId: data?['foodId'],
     );
   }

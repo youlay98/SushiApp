@@ -13,6 +13,13 @@ class FogotPasswordPage extends StatefulWidget {
 class _FogotPasswordPageState extends State<FogotPasswordPage> {
   final formkey = GlobalKey<FormState>();
   final emailcontroller = TextEditingController();
+
+  @override
+  void dispose() {
+    super.dispose();
+    emailcontroller.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     final double widthSize = MediaQuery.of(context).size.width;

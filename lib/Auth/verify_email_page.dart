@@ -2,8 +2,10 @@ import 'dart:async';
 import 'package:firebase_auth/firebase_auth.dart';
 
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:sushiapp/Auth/utils_class.dart';
-import 'package:sushiapp/secondroute.dart';
+import 'package:sushiapp/page/Home/secondroute.dart';
+import 'package:sushiapp/config/provider_models/userprovider.dart';
 
 class VerifyEmailPage extends StatefulWidget {
   const VerifyEmailPage({super.key});
@@ -128,6 +130,11 @@ class _VerifyEmailPageState extends State<VerifyEmailPage> {
     setState(() {
       isEmailVerfied = FirebaseAuth.instance.currentUser!.emailVerified;
     });
-    if (isEmailVerfied) timer?.cancel();
+    if (isEmailVerfied) {
+      timer?.cancel();
+      if (!mounted) return;
+      Provider.of<UserP>(context, listen: false).userId =
+          FirebaseAuth.instance.currentUser!.uid;
+    }
   }
 }

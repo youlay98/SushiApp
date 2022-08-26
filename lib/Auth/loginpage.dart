@@ -2,7 +2,9 @@ import 'package:email_validator/email_validator.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:sushiapp/Auth/utils_class.dart';
+import 'package:sushiapp/config/provider_models/userprovider.dart';
 
 import 'forgot_pass_word.dart';
 
@@ -203,7 +205,6 @@ class _LoginpageState extends State<Loginpage> {
   Future signin() async {
     final isvalid = formkey.currentState!.validate();
     if (!isvalid) return;
-
     showDialog(
         context: context,
         barrierDismissible: false,
@@ -213,9 +214,10 @@ class _LoginpageState extends State<Loginpage> {
     try {
       await FirebaseAuth.instance.signInWithEmailAndPassword(
           email: email.text.trim(), password: password.text.trim());
-
       if (!mounted) return;
       Navigator.of(context).popUntil((route) => route.isFirst);
+      Provider.of<UserP>(context, listen: false).userId =
+          FirebaseAuth.instance.currentUser!.uid;
     } on FirebaseAuthException catch (e) {
       Utils.showSnackBar(e.message);
       Navigator.pop(context);

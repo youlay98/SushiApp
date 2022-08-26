@@ -1,12 +1,12 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:sushiapp/cart.dart';
-import 'package:sushiapp/itemsfromcategory.dart';
-import 'package:sushiapp/widgets/notificationwedgit.dart';
-import 'Models/menuitem_model.dart';
-import 'widgets/ingrediantlistview.dart';
-import 'widgets/animationbuilder.dart';
+import 'package:sushiapp/config/provider_models/cart.dart';
+import 'package:sushiapp/config/provider_models/itemsfromcategory.dart';
+import 'package:sushiapp/Globalwidgets/notificationwedgit.dart';
+import '../../Models/menuitem_model.dart';
+import 'widget/ingrediantlistview.dart';
+import '../../Animation/animationbuilder.dart';
 
 // ignore: camel_case_types
 class detail extends StatefulWidget {

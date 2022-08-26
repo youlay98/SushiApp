@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:provider/provider.dart';
 import 'package:sushiapp/Models/cartinitemmodel.dart';
-import 'package:sushiapp/cart.dart';
+import 'package:sushiapp/config/provider_models/cart.dart';
 
 // ignore: camel_case_types
 class slidablewedgit extends StatelessWidget {

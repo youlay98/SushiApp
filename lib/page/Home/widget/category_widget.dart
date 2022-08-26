@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:sushiapp/Models/menuitem_model.dart';
-import 'package:sushiapp/detail.dart';
+import 'package:sushiapp/page/Detail/detail.dart';
 import 'package:provider/provider.dart';
-import 'package:sushiapp/cart.dart';
+import 'package:sushiapp/config/provider_models/cart.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:sushiapp/itemsfromcategory.dart';
+import 'package:sushiapp/config/provider_models/itemsfromcategory.dart';
 
 class ItemWidget extends StatefulWidget {
   final int index;

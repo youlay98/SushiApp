@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:sushiapp/Models/category_model.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:sushiapp/itemsfromcategory.dart';
+import 'package:sushiapp/config/provider_models/itemsfromcategory.dart';
 import 'package:provider/provider.dart';
-import 'animationbuilder.dart';
+import '../../../Animation/animationbuilder.dart';
 
 class CategoryCard extends StatefulWidget {
   const CategoryCard({Key? key}) : super(key: key);

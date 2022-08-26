@@ -3,8 +3,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sushiapp/Models/cartinitemmodel.dart';
-import 'package:sushiapp/cart.dart';
-import 'scalabelwedgit.dart';
+import 'package:sushiapp/config/provider_models/cart.dart';
+import '../../Cart/widget/scalabelwedgit.dart';
 
 // ignore: camel_case_types, must_be_immutable
 class listtilecart extends StatefulWidget {

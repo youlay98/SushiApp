@@ -4,7 +4,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:provider/provider.dart';
 import 'package:sushiapp/Models/menuitem_model.dart';
 
-import 'package:sushiapp/itemsfromcategory.dart';
+import 'package:sushiapp/config/provider_models/itemsfromcategory.dart';
 import 'category_widget.dart';
 
 // ignore: camel_case_types

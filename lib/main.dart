@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:sushiapp/Auth/utils_class.dart';
-import 'package:sushiapp/textstyle.dart';
+import 'package:sushiapp/config/provider_models/userprovider.dart';
 import 'package:provider/provider.dart';
-import 'cart.dart';
-import 'itemsfromcategory.dart';
+import 'config/provider_models/cart.dart';
+import 'config/provider_models/itemsfromcategory.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
-import 'Auth/loginandsignuppage.dart';
+import 'App.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -20,27 +19,7 @@ void main() async {
     ),
     ChangeNotifierProvider(
       create: (_) => Itemfromcategory(),
-    )
+    ),
+    ChangeNotifierProvider(create: (_) => UserP())
   ], child: const MyApp()));
-}
-
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-        scaffoldMessengerKey: Utils.messengerKey,
-        theme: ThemeData(
-            colorScheme: ColorScheme.fromSwatch().copyWith(
-              primary: Colors.black,
-              secondary: const Color(0xFFFFC107),
-            ),
-            textTheme: const TextTheme(
-              headline1: TitleTextStyle,
-              headline2: TitleTextStyle,
-              bodyText1: bodyTextStyle,
-              bodyText2: bodyTextStyle,
-            )),
-        home: const Loginandsigninpage());
-  }
 }

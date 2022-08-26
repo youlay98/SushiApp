@@ -1,11 +1,11 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'widgets/category_card.dart';
-import 'widgets/itemes.dart';
-import 'widgets/spieceloffer.dart';
-import 'widgets/animationbuilder.dart';
-import 'widgets/notificationwedgit.dart';
+import 'widget/category_card.dart';
+import 'widget/itemes.dart';
+import 'widget/spieceloffer.dart';
+import '../../Animation/animationbuilder.dart';
+import '../../Globalwidgets/notificationwedgit.dart';
 // import 'test.dart';
 
 // ignore: camel_case_types

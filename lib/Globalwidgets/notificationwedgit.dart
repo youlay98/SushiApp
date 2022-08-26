@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:sushiapp/cart.dart';
-import 'package:sushiapp/cartscreen.dart';
+import 'package:sushiapp/config/provider_models/cart.dart';
+import 'package:sushiapp/page/Cart/cartscreen.dart';
 import 'package:provider/provider.dart';
 import 'package:badges/badges.dart';
 
