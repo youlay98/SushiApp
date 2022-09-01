@@ -8,6 +8,7 @@ import '../../Models/menuitem_model.dart';
 
 class Cart extends ChangeNotifier {
   List<menuitem> l = [];
+ 
   // bool isexistincart = false;
   List<int> numberofitem = [];
   List<double> priceofitem = [];
@@ -20,6 +21,10 @@ class Cart extends ChangeNotifier {
     value = fetchcart(context);
     notifyListeners();
   }
+
+ 
+
+  
 
   checkItemIfExistInCart(String id, BuildContext context) async {
     bool isexistincart = false;

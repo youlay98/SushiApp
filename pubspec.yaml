@@ -49,6 +49,14 @@ dependencies:
   firebase_auth: ^3.6.4
   email_validator: ^2.1.17
   google_sign_in: ^5.4.1
+  google_maps_flutter: ^2.1.12
+  geolocator: ^9.0.1
+  location: ^4.4.0
+  flutter_polyline_points: ^1.0.0
+  flutter_svg: ^1.1.4
+  flutter_hooks: ^0.18.5+1
+  flutter_credit_card: ^3.0.3
+  geocoding: ^2.0.5
 
 
 dev_dependencies:

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sushiapp/page/Payment/payementScreen.dart';
 import '../../Animation/animationbuilder.dart';
 import 'widget/cartItem.dart';
 import '../../Globalwidgets/button.dart';
@@ -90,7 +91,15 @@ class CartScreen extends StatelessWidget {
             ),
             Padding(
               padding: EdgeInsets.only(bottom: hightSize / 40, top: 25),
-              child: const ButtonWidget(text: 'Payment'),
+              child: ButtonWidget(
+                  text: 'Payment',
+                  onpressed: () {
+                    Navigator.push(
+                      context,
+                      PageRouteBuilder(
+                          pageBuilder: (_, __, ___) => const PaymentScreen()),
+                    );
+                  }),
             )
           ],
         ));

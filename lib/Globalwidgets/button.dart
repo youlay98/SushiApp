@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 
 class ButtonWidget extends StatelessWidget {
   final String text;
-  const ButtonWidget({super.key, required this.text});
+  void Function() onpressed;
+  ButtonWidget({super.key, required this.text, required this.onpressed});
   @override
   Widget build(BuildContext context) {
     double widthSize = MediaQuery.of(context).size.width;
@@ -22,7 +23,7 @@ class ButtonWidget extends StatelessWidget {
             top: hightSize * 0.03,
             bottom: hightSize * 0.03),
       ),
-      onPressed: () {},
+      onPressed: onpressed,
       child: Text(
         text,
         style: const TextStyle(

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:sushiapp/page/Payment/payementScreen.dart';
+import 'Auth/loginandsignuppage.dart';
 import 'Auth/utils_class.dart';
 import 'Globalwidgets/textstyle.dart';
 
@@ -20,6 +20,6 @@ class MyApp extends StatelessWidget {
               bodyText1: bodyTextStyle,
               bodyText2: bodyTextStyle,
             )),
-        home: const PaymentScreen());
+        home: const Loginandsigninpage());
   }
 }
