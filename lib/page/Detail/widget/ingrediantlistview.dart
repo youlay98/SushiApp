@@ -104,8 +104,9 @@ class _ingredientdetailState extends State<ingredientdetail> {
               child: Text(
                 ing.nam,
                 style: TextStyle(
-                    fontSize: (widthSize * hightSize) * 0.00004,
-                    fontWeight: FontWeight.w500),
+                    color: Colors.grey,
+                    fontSize: (widthSize * hightSize) * 0.000029,
+                    fontWeight: FontWeight.bold),
               ),
             )
           ],

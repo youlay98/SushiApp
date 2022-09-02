@@ -29,12 +29,26 @@ class PaymentScreen extends HookWidget {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
+        elevation: 0.0,
+        backgroundColor: Colors.white,
         leading: IconButton(
-          icon: Icon(Icons.adaptive.arrow_back),
-          onPressed: () {},
+          icon: Icon(Icons.adaptive.arrow_back, color: Colors.black),
+          onPressed: () {
+            Navigator.pop(context);
+          },
         ),
-        actions: [IconButton(onPressed: (() {}), icon: const Icon(Icons.menu))],
-        title: const Text('Payment'),
+        actions: [
+          IconButton(
+              onPressed: (() {}),
+              icon: const Icon(
+                Icons.menu,
+                color: Colors.black,
+              ))
+        ],
+        title: const Text(
+          'Payment',
+          style: TextStyle(color: Colors.black),
+        ),
         centerTitle: true,
       ),
       body: Padding(
@@ -47,7 +61,7 @@ class PaymentScreen extends HookWidget {
               children: const [
                 Text(
                   'Address',
-                  style: TextStyle(fontSize: 20),
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                 ),
               ],
             ),
@@ -139,7 +153,10 @@ class PaymentScreen extends HookWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.start,
               children: const [
-                Text('Peyemant method'),
+                Text(
+                  'Peyemant method',
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                ),
               ],
             ),
             const Spacer(
@@ -221,8 +238,12 @@ class PaymentScreen extends HookWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: const [
-                Text('Shipping cost'),
-                Text('\$10'),
+                Text('Shipping cost',
+                    style:
+                        TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+                Text('\$10',
+                    style:
+                        TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
               ],
             ),
             const Spacer(
@@ -231,9 +252,13 @@ class PaymentScreen extends HookWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                const Text('subtotal'),
+                const Text('subtotal',
+                    style:
+                        TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
                 Text(
-                    '\$${Provider.of<Pyment>(context, listen: false).subtotal}'),
+                    '\$${double.parse(((Provider.of<Pyment>(context, listen: false).subtotal)).toStringAsFixed(2))}',
+                    style: const TextStyle(
+                        fontSize: 20, fontWeight: FontWeight.bold)),
               ],
             ),
             const Spacer(
@@ -242,12 +267,15 @@ class PaymentScreen extends HookWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                const Text('Total'),
+                const Text('Total',
+                    style:
+                        TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
                 Text(
-                  '\$${Provider.of<Pyment>(
-                    context,
-                  ).totale}',
-                ),
+                    '\$${double.parse(((Provider.of<Pyment>(
+                      context,
+                    ).totale)).toStringAsFixed(2))}',
+                    style: const TextStyle(
+                        fontSize: 20, fontWeight: FontWeight.bold)),
               ],
             ),
             const Spacer(

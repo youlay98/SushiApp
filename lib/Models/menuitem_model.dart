@@ -263,7 +263,7 @@ class menuitem extends Equatable {
       id: '1',
       description: 'jkdfiejlkjsdfj',
       price: 1.55,
-      image: 'Assets/kimchi.jpg',
+      image: 'Assets/piecesushi.png',
       // l: [
       //   Ingredient(nam: 'youssef', img: 'Assets/piecesushi.png'),
       //   Ingredient(nam: 'youssef', img: 'Assets/piecesushi.png'),
@@ -278,7 +278,7 @@ class menuitem extends Equatable {
       id: '1',
       description: 'jkdfiejlkjsdfj',
       price: 1.55,
-      image: 'Assets/kimchi.jpg',
+      image: 'Assets/piecesushi.png',
       // l: [
       //   Ingredient(nam: 'youssef', img: 'Assets/piecesushi.png'),
       //   Ingredient(nam: 'youssef', img: 'Assets/piecesushi.png'),
@@ -293,7 +293,7 @@ class menuitem extends Equatable {
       id: '1',
       description: 'jkdfiejlkjsdfj',
       price: 1.55,
-      image: 'Assets/kimchi.jpg',
+      image: 'Assets/piecesushi.png',
       // l: [
       //   Ingredient(nam: 'youssef', img: 'Assets/piecesushi.png'),
       //   Ingredient(nam: 'youssef', img: 'Assets/piecesushi.png'),

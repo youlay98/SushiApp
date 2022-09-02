@@ -86,8 +86,6 @@ class _MapwidgetState extends State<Mapwidget> {
 
   @override
   Widget build(BuildContext context) {
-    print(usId);
-
     final double widthSize = MediaQuery.of(context).size.width;
     final double hightSize = MediaQuery.of(context).size.height;
     return Scaffold(
