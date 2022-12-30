@@ -1,7 +1,10 @@
 # sushiapp
 
 
-Welcome to our Flutter app that allows you to order food online! We utilize Firebase and FirebaseAuth for secure and efficient processing of orders. To see a video demonstration of the app, please follow the provided [link](https://youtu.be/7ZBb5wIN4eM). Below is a list of all the screens available in the app: 
+Welcome to our Flutter app that allows you to order food online! We utilize Firebase and FirebaseAuth for secure and efficient processing of orders. 
+To see a video demonstration of the app, please follow the provided [link](https://youtu.be/7ZBb5wIN4eM).
+
+Below is a list of all the screens available in the app: 
 
 
 <img src='https://user-images.githubusercontent.com/86055309/190716221-9c20203a-d754-4531-acbe-0040112e1aff.png' width=200>
